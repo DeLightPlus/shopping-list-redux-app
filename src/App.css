@@ -189,7 +189,7 @@ li:last-child
 .shopping-list-item button#update:hover 
 {
   background-color: #2a9b1c;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 
@@ -219,32 +219,19 @@ li:last-child
   flex-direction: row;
   align-items: center;
   padding: 1rem;
+  gap: 4px;
 }
 
 #edit-form input[type="text"] 
 {
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.35rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   /* width: 100%; */
 }
 
-/* #edit-form button[type="button"] 
-{
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-#edit-form button[type="button"]:hover 
-{
-  background-color: #3e8e41;
-} */
 
 .inc_dec_quant
 {
@@ -260,7 +247,6 @@ li:last-child
 {
   width: 30px;
   height: 32px;
-  margin: 1px;
 }
 
 .inc_dec_quant button .icn
@@ -269,10 +255,25 @@ li:last-child
   transform: translate(-8px, -2px);
 }
 
-.inc_dec_quant span
+.inc_dec_quant span, input
 {
-  text-align: center;
+  width: 64px;
+  text-align: center;  
+  /* background: #69696927; */
+  border: none;
+  border-radius: 5px;
   padding: 8px;
   font-size: 12px;
   font-weight: 800;
+}
+
+.inc_dec_quant input
+{
+  width: 100%;
+  text-align: center;  
+  background: #69696900;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 12px;
 }

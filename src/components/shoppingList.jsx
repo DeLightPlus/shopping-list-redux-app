@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteShoppingItem, editShoppingItem, updateItemQuantity } from '../redux/shoppingListReducer';
+import { fetchShoppingList, deleteShoppingItem, editShoppingItem } from '../redux/shoppingListReducer';
+// import {  } from '../shoppingListSlice.js';
 
 const ShoppingList = () => {
   const shoppingList = useSelector((state) => state.shoppingList);
@@ -8,22 +9,21 @@ const ShoppingList = () => {
 
   const [editing, setEditing] = useState(null);
   const [editInput, setEditInput] = useState('');
-  const [editQuant, setEditQuant] = useState(0);
+  const [editQuant, setEditQuant] = useState(1); 
 
-  const handleDecrement = (item) => 
-  {    
-    if (item.quantity > 1) 
-    {    
-      dispatch( updateItemQuantity({id: item.id, shoppingItem: item.shoppingItem, quantity: item.quantity-1}) );
-    }
-  };
- 
+  useEffect(() =>
+  {
+    dispatch( fetchShoppingList() );
+    console.log('s_list',shoppingList,  ' X ', dispatch( fetchShoppingList() ));
+    
+  },[]);
 
   return (
     <ul>
       {shoppingList.map((item) => (
         <li key={item.id}>
-          {editing === item.id ? (
+          {
+            editing === item.id ? (
             <EditForm
               item={item}
               editInput={editInput}
@@ -33,6 +33,7 @@ const ShoppingList = () => {
               setEditing={setEditing}
               dispatch={dispatch}              
             />
+            
           ) : (
             <ShoppingItem
               item={item}
@@ -53,21 +54,24 @@ const ShoppingList = () => {
 
 
 const EditForm = ({ item, editInput, setEditInput, editQuant, setEditQuant, setEditing, dispatch }) => (
-  <div className='shopping-list-item' id='edit-form'>
+ 
+    
+ <div className='shopping-list-item' id='edit-form'>
     <input  type="text" value={editInput}
       onChange={(e) => setEditInput(e.target.value)}
     />
-
+    {  }
     <div className='inc_dec_quant'>
-        <button onClick={() => setEditQuant(editQuant-1)}>
+        {/* <button onClick={() => setEditQuant(editQuant-1)}>
             <div className='icn'>➖</div>
-        </button>
+        </button> */}
         
-        <span>{editQuant}</span>
+        <input type='number' value={editQuant}
+            onChange={(e) => setEditQuant(e.target.value)}/>
 
-        <button onClick={() => setEditQuant(editQuant+1)}>
-        <div className='icn'>➕</div>
-        </button>
+        {/* <button onClick={() => setEditQuant(editQuant+1)}>
+            <div className='icn'>➕</div>
+        </button> */}
     </div>
     
     <button id='update'
@@ -75,6 +79,7 @@ const EditForm = ({ item, editInput, setEditInput, editQuant, setEditQuant, setE
         dispatch( editShoppingItem({ id: item.id, shoppingItem: editInput, quantity: editQuant }));
         setEditing(null);
         setEditInput('');
+        setEditQuant(1);
       }}
     >
       <div className='icn'>♲</div> {/*🔃🔄*/}
@@ -88,10 +93,8 @@ const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
     <div className='inc_dec_quant'>
         {/* <button onClick={() => handleDecrement(item)}>
             <div className='icn'>➖</div>
-        </button> */}
-        
+        </button> */}        
         <span>{item.quantity}</span>
-
         {/* <button onClick={() =>  dispatch( 
             updateItemQuantity({id: item.id, shoppingItem: item.shoppingItem, quantity: item.quantity+1})  
             )}>
@@ -112,7 +115,7 @@ const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
         onClick={() => dispatch(deleteShoppingItem(item.id))}>
       <div className='icn'>🗑</div>
     </button>
-    &#9617;
+    
   </div>
 );
 
