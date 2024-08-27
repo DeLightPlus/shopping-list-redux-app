@@ -1,16 +1,278 @@
 #root {
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+/* Global Styles */
 
-
-.card {
-  padding: 2em;
+*
+{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.read-the-docs {
-  color: #888;
+body 
+{
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.App
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #dfdfdf;
+  max-width: 1280px;
+  height: 100%;
+}
+
+.HeaderContainer
+{
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  margin: 10px;
+  padding: 1rem 2rem;
+  text-align: start;
+}
+
+.HeaderTitle
+{
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.add-shopping-item-container 
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1em;
+  width: 97%;
+  height: 16%;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-shopping-item-group
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.add-shopping-item-input 
+{
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  /* margin-bottom: 1rem; */
+}
+
+.add-shopping-item-input[type='number'] 
+{
+  width: 50%;
+}
+
+.add-shopping-item-input::placeholder 
+{
+  color: #aaa;
+}
+
+.add-shopping-item-button 
+{
+  width: 86px;
+  height: 86px;
+  background-color: #f8f8f8;
+  color: #fff;
+  border: black solid 1px;
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.add-shopping-item-button:hover 
+{
+  background-color: #d3d3d3;
+  border: wheat solid 1px;
+  box-shadow: black 0px 0px 5px;
+}
+
+.add-shopping-item-label 
+{
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-shopping-item-label span 
+{
+  color: #aaa;
+}
+
+ul 
+{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  overflow-y: scroll;
+}
+
+li 
+{
+  padding: 0.5rem;
+  border-bottom: 1px solid #696969;
+  
+}
+
+li:last-child 
+{
+  border-bottom: 1px dotted #ccc;
+}
+
+/* Shopping List Item Styles */
+
+.shopping-list-item 
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shopping-list-item span 
+{
+  flex-grow: 1;
+  text-align: start;
+  padding: 0px 16px;
+}
+
+.shopping-list-item button 
+{
+  width: 40px;
+  height: 40px;
+  margin-left: 0.5rem;
+  background-color: #3d3d3d;
+  color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  
+}
+
+.shopping-list-item button:hover 
+{
+  background-color: #d1b200;
+}
+
+.shopping-list-item button#delete:hover 
+{
+  background-color: #b61b00;
+}
+
+.shopping-list-item button#update:hover 
+{
+  background-color: #2a9b1c;
+  margin-right: 10px;
+}
+
+
+.shopping-list-item button .icn
+{
+  font-size: 18px;
+  transform: translate(-6px);
+}
+
+.shopping-list-item button#delete .icn
+{
+  font-size: 26px;
+  transform: translate(-5px, -6px );
+}
+
+.shopping-list-item button#update .icn
+{
+  font-size: 26px;
+  transform: translate(-7px, -8px );
+}
+
+/* Edit Form Styles */
+
+#edit-form 
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+}
+
+#edit-form input[type="text"] 
+{
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  /* width: 100%; */
+}
+
+/* #edit-form button[type="button"] 
+{
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#edit-form button[type="button"]:hover 
+{
+  background-color: #3e8e41;
+} */
+
+.inc_dec_quant
+{
+  padding: 1px;
+  display: flex;
+  background: #81818142;
+  height: 35px;
+  width: 120px;
+  border-radius: 25px;
+}
+
+.inc_dec_quant button
+{
+  width: 30px;
+  height: 32px;
+  margin: 1px;
+}
+
+.inc_dec_quant button .icn
+{
+  font-size: 12px;
+  transform: translate(-8px, -2px);
+}
+
+.inc_dec_quant span
+{
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 800;
 }

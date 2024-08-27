@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import './App.css';
-import AddTodoItem from './components/addtodoItem';
-import TodoList from './components/todolist';
+import AddShoppingItem from './components/addShoppingItem';
+import ShoppingList from './components/shoppingList';
+import Header from './components/Header';
 
 function App() 
 {  
 
   return (
     <div className='App'>
-      <AddTodoItem />  
-
-      <TodoList/>
+      <Header/>
+      
+      <AddShoppingItem /> 
+      <ShoppingList/>
            
     </div>
   )

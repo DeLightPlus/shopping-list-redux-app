@@ -1,0 +1,22 @@
+{
+    "shoppingList": [
+      {
+        "id": 1,
+        "shoppingItem": "Apple",
+        "quantity": 3,
+        "purchased": false
+      },
+      {
+        "id": 2,
+        "shoppingItem": "Milk",
+        "quantity": 2,
+        "purchased": false
+      },
+      {
+        "id": 3,
+        "shoppingItem": "Bread",
+        "quantity": 1,
+        "purchased": false
+      }
+    ]
+  }
