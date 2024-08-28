@@ -1,37 +1,59 @@
 {
-  "shoppingList": [
+  "users": [
     {
-      "id": "1",
-      "shoppingItem": "Apple",
-      "quantity": 3,
-      "purchased": false
+      "id": "admin",
+      "username": "Admin",
+      "email": "admin@admin.admins",
+      "password": "admin",
+      "role": "admin"
     },
     {
+      "id": "10ee",
+      "username": "Kabelo",
+      "email": "kab@e.mail",
+      "password": "123"
+    },
+    {
+      "id": "1ff8",
+      "username": "Pete",
+      "email": "pete@e.mail",
+      "password": "123"
+    },
+    {
+      "id": "c763",
+      "email": "newa@e.mail",
+      "password": "123"
+    },
+    {
+      "id": "2f1d",
+      "username": "Lee",
+      "email": "lee@e.mail",
+      "password": "123"
+    }
+  ],
+  "shoppingList": [
+    {
       "id": "2",
+      "uid": "admin",
       "shoppingItem": "Milk",
+      "price": 30,
       "quantity": 2,
       "purchased": false
     },
     {
       "id": "3",
+      "uid": "1ff8",
       "shoppingItem": "Bread",
-      "quantity": 1,
+      "price": 5,
+      "quantity": "8",
       "purchased": false
     },
     {
-      "id": 1724766710349,
-      "shoppingItem": "",
-      "quantity": 1
-    },
-    {
-      "id": 1724766710365,
-      "shoppingItem": "",
-      "quantity": 1
-    },
-    {
-      "id": 1724766711941,
-      "shoppingItem": "",
-      "quantity": 1
+      "id": "1724851803332",
+      "uid": "2f1d",
+      "shoppingItem": "Apples",
+      "price": "20",
+      "quantity": "2"
     }
   ]
 }

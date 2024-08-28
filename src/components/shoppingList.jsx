@@ -19,7 +19,7 @@ const ShoppingList = () => {
   },[]);
 
   return (
-    <ul>
+    <ul className='shopping-list'>
       {shoppingList.map((item) => (
         <li key={item.id}>
           {
@@ -50,28 +50,16 @@ const ShoppingList = () => {
   );
 };
 
-
-
-
 const EditForm = ({ item, editInput, setEditInput, editQuant, setEditQuant, setEditing, dispatch }) => (
- 
-    
+   
  <div className='shopping-list-item' id='edit-form'>
     <input  type="text" value={editInput}
       onChange={(e) => setEditInput(e.target.value)}
     />
-    {  }
+    
     <div className='inc_dec_quant'>
-        {/* <button onClick={() => setEditQuant(editQuant-1)}>
-            <div className='icn'>➖</div>
-        </button> */}
-        
         <input type='number' value={editQuant}
             onChange={(e) => setEditQuant(e.target.value)}/>
-
-        {/* <button onClick={() => setEditQuant(editQuant+1)}>
-            <div className='icn'>➕</div>
-        </button> */}
     </div>
     
     <button id='update'
@@ -90,16 +78,16 @@ const EditForm = ({ item, editInput, setEditInput, editQuant, setEditQuant, setE
 const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
   <div className='shopping-list-item '>
     <span>{item.shoppingItem}</span>
-    <div className='inc_dec_quant'>
-        {/* <button onClick={() => handleDecrement(item)}>
-            <div className='icn'>➖</div>
-        </button> */}        
-        <span>{item.quantity}</span>
-        {/* <button onClick={() =>  dispatch( 
-            updateItemQuantity({id: item.id, shoppingItem: item.shoppingItem, quantity: item.quantity+1})  
-            )}>
-        <div className='icn'>➕</div>
-        </button> */}
+    <div className='inc_dec_quant' id='price'>            
+        <span><small>Price:</small> R{ item.price}</span>        
+    </div>
+
+    <div className='inc_dec_quant' id='Qty'>               
+        <span><small>Qty:</small> {item.quantity}</span>
+    </div>
+
+    <div className='inc_dec_quant' id='total'>                
+        <span><small>Total:</small> R{ item.price * item.quantity}</span>
     </div>
     
     <button

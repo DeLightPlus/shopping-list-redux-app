@@ -37,6 +37,8 @@ body
 
 .HeaderContainer
 {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   background-color: #333;
   color: #fff;
@@ -54,23 +56,27 @@ body
 .add-shopping-item-container 
 {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1em;
+  flex-direction: column;
+  
+
+  padding: 0.5em;
+
   width: 97%;
   height: 16%;
   background-color: #f7f7f7;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .add-shopping-item-group
 {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  align-items: center;  
 }
 
 .add-shopping-item-input 
@@ -85,7 +91,7 @@ body
 
 .add-shopping-item-input[type='number'] 
 {
-  width: 50%;
+  width: 64%;
 }
 
 .add-shopping-item-input::placeholder 
@@ -116,7 +122,7 @@ body
 .add-shopping-item-label 
 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
 }
 
 .add-shopping-item-label span 
@@ -124,7 +130,22 @@ body
   color: #aaa;
 }
 
-ul 
+.calculate-item
+{
+  padding: 0px 16px;
+  margin-top: -24px;
+  background: #696969;
+  width: 85%;
+  height: 32px;
+  border-radius: 4px;
+  color: whitesmoke;
+  text-align: left;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;  
+  box-shadow: #333 0px 2px 4px;
+}
+
+ul.shopping-list 
 {
   list-style: none;
   padding: 0;
@@ -134,14 +155,14 @@ ul
   overflow-y: scroll;
 }
 
-li 
+.shopping-list li 
 {
   padding: 0.5rem;
   border-bottom: 1px solid #696969;
   
 }
 
-li:last-child 
+.shopping-list li:last-child 
 {
   border-bottom: 1px dotted #ccc;
 }
@@ -160,6 +181,8 @@ li:last-child
   flex-grow: 1;
   text-align: start;
   padding: 0px 16px;
+  font-weight: 700;
+  font-family:'Times New Roman', Times, serif;
 }
 
 .shopping-list-item button 
@@ -196,19 +219,19 @@ li:last-child
 .shopping-list-item button .icn
 {
   font-size: 18px;
-  transform: translate(-6px);
+  transform: translate(-8px, -2px);
 }
 
 .shopping-list-item button#delete .icn
 {
   font-size: 26px;
-  transform: translate(-5px, -6px );
+  transform: translate(-6px, -7px );
 }
 
 .shopping-list-item button#update .icn
 {
   font-size: 26px;
-  transform: translate(-7px, -8px );
+  transform: translate(-9px, -8px );
 }
 
 /* Edit Form Styles */
@@ -235,13 +258,18 @@ li:last-child
 
 .inc_dec_quant
 {
+  margin-left: 4px;
   padding: 1px;
   display: flex;
   background: #81818142;
   height: 35px;
-  width: 120px;
+  width: 100px;
   border-radius: 25px;
+
 }
+
+.inc_dec_quant#total
+{width: 120px;}
 
 .inc_dec_quant button
 {
@@ -258,7 +286,7 @@ li:last-child
 .inc_dec_quant span, input
 {
   width: 64px;
-  text-align: center;  
+  text-align: justsify;  
   /* background: #69696927; */
   border: none;
   border-radius: 5px;
