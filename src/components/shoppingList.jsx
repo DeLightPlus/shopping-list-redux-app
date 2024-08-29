@@ -8,9 +8,6 @@ const ShoppingList = () => {
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
   const shoppingList = useSelector((state) => state.shoppingList); 
-
-  
-
   const [editing, setEditing] = useState(null);
   const [editInput, setEditInput] = useState('');
   const [editPrice, setEditPrice] = useState(0); 
@@ -34,13 +31,22 @@ const ShoppingList = () => {
     },[signedIn, shoppingList]);
 
     console.log(editing);
-    
+    const calculateTotalExpense = (shoppingList) => 
+    {
+      let totalExpense = 0;
+      for (const item of shoppingList) {
+        totalExpense += item.price * item.quantity;
+      }
+      return totalExpense.toFixed(2);
+    };
+    const totalExpense = calculateTotalExpense(shoppingList);
 
   return (
 
     <>
-    <div className="expenseNsearch">
-    <label htmlFor=""><strong>Estimated Total Expense:</strong></label>
+    <div className="expense_search">
+      <label><strong>Estimated Total Expense:</strong> R{totalExpense} </label>
+      <input placeholder='Search'/>
     </div>
 
     <ul className='shopping-list'>

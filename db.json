@@ -79,6 +79,14 @@
       "price": "25",
       "quantity": "2",
       "extraNotes": "2L, Full Cream, Fresh"
+    },
+    {
+      "id": "1724933277455",
+      "uid": "1ff8",
+      "shoppingItem": "Mixed Vegetable",
+      "price": "10",
+      "quantity": "2",
+      "extraNotes": "1kg"
     }
   ]
 }

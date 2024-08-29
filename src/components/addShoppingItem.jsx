@@ -14,7 +14,7 @@ function AddShoppingItem()
     console.log('Logged-in user:', user);
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
-  
+
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(0); 
   const [price, setPrice] = useState(0);  
@@ -35,6 +35,7 @@ function AddShoppingItem()
     setItem("");
     setQuantity(1);
     setPrice(0)
+    setExtraNotes("")
   };
 
   return (
