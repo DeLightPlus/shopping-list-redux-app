@@ -27,6 +27,20 @@
     border-radius: 25px;
     cursor: pointer;
   }
+
+  .nav-item .signOut 
+  {
+    display: none;
+  }
+  
+  .nav-item:hover .signOut
+  {
+    display: inline-block;
+    background: #242424;
+    padding: 2px 8px;
+    border-radius: 25px;
+  }
+  
   
   .nav-link 
   {
@@ -41,6 +55,7 @@
     font-weight: 600;
     
   }
+
   
   /* Form Styles */
   

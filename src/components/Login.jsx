@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser, signIn, signOut } from '../redux/userSlice';
+import { signInUser } from '../redux/userSlice';
 
 function Login() {
 
@@ -20,17 +20,13 @@ function Login() {
         {
             const response = await dispatch( signInUser({ email, password }) );
             console.log('signin.res', response);
-            if(signIn)
-            {
-                // dispatch( signIn(response.data) );
-                navigate('/');
-            }
+            if(response){ navigate('/'); }
         }
         catch (error) {  console.error(error); }
     };
 
     console.log('Login.signedIn', signedIn);
-    
+    if (signedIn) { navigate('/'); }
 
   return (
     <div className="login-form">

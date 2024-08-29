@@ -45,7 +45,7 @@
       "uid": "1ff8",
       "shoppingItem": "Bread",
       "price": 5,
-      "quantity": "8",
+      "quantity": 1,
       "purchased": false
     },
     {
@@ -53,6 +53,13 @@
       "uid": "2f1d",
       "shoppingItem": "Apples",
       "price": "20",
+      "quantity": "2"
+    },
+    {
+      "id": "1724914490986",
+      "uid": "1ff8",
+      "shoppingItem": "aaa",
+      "price": 0,
       "quantity": "2"
     }
   ]

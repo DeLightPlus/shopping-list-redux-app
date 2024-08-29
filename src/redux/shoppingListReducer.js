@@ -48,13 +48,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'http://localhost:8000/shoppingList';
+const url = `http://localhost:8000/shoppingList`;
 
 // Thunks for async operations
 export const fetchShoppingList = createAsyncThunk(
   'shoppingList/fetchShoppingList',
-  async () => {
-    const response = await axios.get(url);
+  async (uid) => {
+    const response = await axios.get(`${url}?uid=${uid}`);
+    console.log('shopping-list', response);
+    
     return response.data;
   }
 );

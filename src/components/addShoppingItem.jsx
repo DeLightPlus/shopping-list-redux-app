@@ -1,5 +1,4 @@
 import { addShoppingItem } from "../redux/shoppingListReducer";
-import { signIn, signOut } from '../redux/userSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
@@ -10,7 +9,8 @@ function AddShoppingItem()
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
-  if (user) {
+  if (user) 
+  {
     console.log('Logged-in user:', user);
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
@@ -19,12 +19,14 @@ function AddShoppingItem()
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(0); 
   const [price, setPrice] = useState(0);  
+  const [extraNotes, setExtraNotes] = useState('');  
+  
   
   
 
   const handleAddItem = () => {
     dispatch( 
-      addShoppingItem({ id: `${Date.now()}`, uid: '2f1d', shoppingItem: item, price: price, quantity: quantity }));
+      addShoppingItem({ id: `${Date.now()}`, uid: user.id, shoppingItem: item, price: price, quantity: quantity }));
     
     setItem("");
     setQuantity(1);
@@ -33,10 +35,10 @@ function AddShoppingItem()
 
   return (
     <div className="add-shopping-item-container">
-      <div style={{padding:'0px 32px', display:'flex', justifyContent:'space-between'}}>
+      <div style={{padding:'0px 8px 0px 0px',border:'darkgrey solid 1px', display:'flex', justifyContent:'space-between'}}>
         <div className="add-shopping-item-group">      
           <label className="add-shopping-item-label">
-            Item Name <span></span>
+            ItemName <span></span>
           </label>
           <input className="add-shopping-item-input"
             type="text" placeholder="(e.g. Apple)"        
@@ -62,19 +64,23 @@ function AddShoppingItem()
             type="number" placeholder="Quantity"  value={quantity}      
             onChange={(e) => setQuantity(e.target.value)}
           />
-        </div>
-
-        <div className="add-shopping-item-group">Add Item
-          <button className="add-shopping-item-button" onClick={handleAddItem}>
-            ➕
-          </button>
-        </div>
+        </div>        
       </div>
 
       <div className="calculate-item">
         <span>{item && <strong>{item} <sup>x{quantity}</sup> = R{price * quantity}</strong>}</span>
       </div>
 
+      <div style={{padding:'0px 1px', display:'flex', justifyContent:'space-between'}}>
+        <textarea value={extraNotes} placeholder="Extra Notes:"
+          onChange={(e) => setExtraNotes(e.target.value)} />
+        
+        <div className="add-shopping-item-group">
+            <button className="add-shopping-item-button" onClick={handleAddItem}>
+              <div className="icn">➕</div>
+            </button>
+        </div>
+      </div>
 
       
     </div>

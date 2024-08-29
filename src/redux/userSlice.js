@@ -37,18 +37,18 @@ const initialState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
+  reducers: {  
     signIn: (state, action) => {
-        state.id = action.payload.id;
-        state.username = action.payload.username;     
-        state.signedIn = true;  
+        console.log('signin.action', action);
         
-        sessionStorage.setItem('user', JSON.stringify(action.payload));       
-    },
+        state.id = action.payload.id
+        state.username = action.payload.username;
+        state.signedIn = true;
+      },
 
     signOut: (state) => {
         state.id = null;
-        state.username = null;     
+        state.username = '';     
         state.signedIn = false;  
         sessionStorage.removeItem('user')
     },
@@ -58,7 +58,10 @@ export const userSlice = createSlice({
     builder.addCase(signInUser.fulfilled, (state, action) => {
         state.id = action.payload.id;
         state.username = action.payload.username;      
-        state.signedIn = true;      
+        state.signedIn = true;  
+
+        console.log('signinuser.action.payload|extra', action.payload);
+        sessionStorage.setItem('user', JSON.stringify(action.payload)); 
     });
 
     builder.addCase(signInUser.rejected, (state, action) => {  

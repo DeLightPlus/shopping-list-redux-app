@@ -8,21 +8,24 @@ import { signIn, signOut } from '../redux/userSlice';
 const Header = ({ showEntry, setShowEntry }) => {
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.signedIn);
+  const user = useSelector((state) => state.user.username);
 
   if(signedIn) console.log('h-signed-in', signedIn); 
 
   useEffect(() => 
     {
-      const user = JSON.parse(sessionStorage.getItem('user'));    
+      const user = JSON.parse(sessionStorage.getItem('user'));   
       
       if(user)
       {
-        console.log(user);
-        dispatch( signIn(user) );
+        console.log('header_user',user);       
+        dispatch(signIn(user)); // Dispatch signIn action 
+      } 
+      else 
+      {
+        dispatch(signOut());
       }
-      
-    },[dispatch]);
-
+    }, []);
 
   return (
     <div className='HeaderContainer'>
@@ -42,7 +45,9 @@ const Header = ({ showEntry, setShowEntry }) => {
 
           {signedIn && (
             <li className="nav-item">
-              <Link to="/" className="nav-link">Logout</Link>
+              <div></div>
+              <Link to="/" className="nav-link">{user}</Link><br/>
+               <span className='signOut' onClick={() => {dispatch(signOut)}}>Logout</span> 
             </li>
           )}
         </ul>
