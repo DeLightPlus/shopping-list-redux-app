@@ -14,19 +14,23 @@ function AddShoppingItem()
     console.log('Logged-in user:', user);
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
-
-
+  
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(0); 
   const [price, setPrice] = useState(0);  
   const [extraNotes, setExtraNotes] = useState('');  
   
-  
-  
 
   const handleAddItem = () => {
     dispatch( 
-      addShoppingItem({ id: `${Date.now()}`, uid: user.id, shoppingItem: item, price: price, quantity: quantity }));
+      addShoppingItem({ 
+        id: `${Date.now()}`, 
+        uid: user.id, 
+        shoppingItem: `${item}`, 
+        price: `${price}`, 
+        quantity: `${quantity}`, 
+        extraNotes: `${extraNotes}` 
+      }));
     
     setItem("");
     setQuantity(1);

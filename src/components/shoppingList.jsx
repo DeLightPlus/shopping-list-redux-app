@@ -15,7 +15,7 @@ const ShoppingList = () => {
   const [editInput, setEditInput] = useState('');
   const [editPrice, setEditPrice] = useState(0); 
   const [editQuant, setEditQuant] = useState(1); 
-  const [editExtraNotes, setEditExtraNotes] = useState(1); 
+  const [editExtraNotes, setEditExtraNotes] = useState('');
 
   useEffect(() =>
     {
@@ -33,10 +33,16 @@ const ShoppingList = () => {
       console.log('s_list',shoppingList);      
     },[signedIn, shoppingList]);
 
+    console.log(editing);
+    
 
   return (
 
-    <><label htmlFor=""><strong>Estimated Total Expense:</strong></label>
+    <>
+    <div className="expenseNsearch">
+    <label htmlFor=""><strong>Estimated Total Expense:</strong></label>
+    </div>
+
     <ul className='shopping-list'>
       {shoppingList.map((item) => (
         <li key={item.id}>
@@ -44,21 +50,21 @@ const ShoppingList = () => {
             editing === item.id ? (
             <EditForm
               item={item}
-              editInput={editInput}
-              setEditInput={setEditInput}
-              editQuant={editQuant}
-              setEditQuant={setEditQuant}
               setEditing={setEditing}
+              editInput={editInput} setEditInput={setEditInput}
+              editPrice={editPrice} setEditPrice={setEditPrice}
+              editQuant={editQuant} setEditQuant={setEditQuant}
+              editExtraNotes={editExtraNotes} setEditExtraNotes={setEditExtraNotes}              
               dispatch={dispatch}              
-            />
-            
+            />            
           ) : (
             <ShoppingItem
               item={item}
               setEditing={setEditing}
-              setEditInput={setEditInput}
-              editQuant={editQuant}
+              setEditInput={setEditInput}            
+              setEditPrice={setEditPrice}
               setEditQuant={setEditQuant}
+              setEditExtraNotes={setEditExtraNotes}
               dispatch={dispatch}             
             />
           )}
@@ -69,13 +75,15 @@ const ShoppingList = () => {
   );
 };
 
-const EditForm = ({ item, 
+const EditForm = ({ 
+  item, setEditing,
   editInput, setEditInput, 
   editPrice, setEditPrice, 
   editQuant, setEditQuant, 
-  setEditing, dispatch }) => (
+  editExtraNotes, setEditExtraNotes, 
+  dispatch }) => (
    
- <div className='shopping-list-item' id='edit-form'>
+  <div className='shopping-list-item' id='edit-form'>
     <div className='list-item-group'>
       <input  type="text" value={editInput}
         onChange={(e) => setEditInput(e.target.value)}
@@ -103,10 +111,21 @@ const EditForm = ({ item,
       
       <button id='update'
         onClick={() => {
-          dispatch( editShoppingItem({ id: item.id, shoppingItem: editInput, quantity: editQuant }));
-          setEditing(null);
-          setEditInput('');
-          setEditQuant(1);
+          if (editExtraNotes.trim() !== '') 
+          {
+            dispatch( editShoppingItem({ 
+              id: item.id, 
+              shoppingItem: editInput, 
+              price: editPrice,             
+              quantity: editQuant,
+              extraNotes: editExtraNotes }));
+
+            setEditing(null);
+            setEditInput('');
+            setEditPrice(0);
+            setEditQuant(1);         
+          } 
+          else { alert('Please enter some extra notes'); }
         }}
       >
         <div className='icn'>♲</div> {/*🔃🔄*/}
@@ -114,12 +133,19 @@ const EditForm = ({ item,
     </div>
 
     <div className='list-item-group'>
-      <textarea />
+      <textarea value={editExtraNotes}
+        onChange={(e) => setEditExtraNotes(e.target.value)}/>
     </div> 
   </div>
 );
 
-const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
+const ShoppingItem = ({ item, 
+  setEditing, 
+  setEditInput, 
+  setEditPrice, 
+  setEditQuant, 
+  setEditExtraNotes,
+  dispatch}) => (
   <div className='shopping-list-item '>
     <div className='list-item-group'>
       <span>{item.shoppingItem}</span>
@@ -136,12 +162,13 @@ const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
       </div>
 
       {/* <div> */}
-        <button
-          onClick={() => {
+        <button onClick={() => {
             setEditing(item.id);
             setEditInput(item.shoppingItem);
-          }}
-        >
+            setEditPrice(item.price);
+            setEditQuant(item.quantity);
+            setEditExtraNotes(item.extraNotes);
+          }}>
           <div className='icn'>📝</div>
         </button>
 
@@ -153,7 +180,8 @@ const ShoppingItem = ({ item, setEditing, setEditInput, dispatch}) => (
     </div>
 
     <div className='list-item-group'>
-      <textarea />
+    <textarea value={item.extraNotes} 
+        onChange={(e) => {}} />
     </div>  
   </div>
 );

@@ -29,6 +29,12 @@
       "username": "Lee",
       "email": "lee@e.mail",
       "password": "123"
+    },
+    {
+      "id": "a1c8",
+      "username": "Rod",
+      "email": "rod@e.mail",
+      "password": "123"
     }
   ],
   "shoppingList": [
@@ -38,14 +44,16 @@
       "shoppingItem": "Milk",
       "price": 30,
       "quantity": 2,
+      "extraNotes": "Brand 2L",
       "purchased": false
     },
     {
       "id": "3",
       "uid": "1ff8",
       "shoppingItem": "Bread",
-      "price": 5,
-      "quantity": 1,
+      "price": "14",
+      "quantity": "2",
+      "extraNotes": "Brand, Brown",
       "purchased": false
     },
     {
@@ -53,14 +61,24 @@
       "uid": "2f1d",
       "shoppingItem": "Apples",
       "price": "20",
-      "quantity": "2"
+      "quantity": "2",
+      "extraNotes": "Green Apples, 2kg"
     },
     {
       "id": "1724914490986",
       "uid": "1ff8",
-      "shoppingItem": "aaa",
-      "price": 0,
-      "quantity": "2"
+      "shoppingItem": "Apples",
+      "price": "18",
+      "quantity": 1,
+      "extraNotes": "Red Apples, 2kg"
+    },
+    {
+      "id": "1724925190670",
+      "uid": "1ff8",
+      "shoppingItem": "Milk",
+      "price": "25",
+      "quantity": "2",
+      "extraNotes": "2L, Full Cream, Fresh"
     }
   ]
 }
