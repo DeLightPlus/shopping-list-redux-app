@@ -58,7 +58,7 @@ body
   display: flex;
   flex-direction: column;
   
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0.5em;
 
   width: 97%;
@@ -72,9 +72,11 @@ body
 
 .add-shopping-item-group
 {
-  margin: 0;
+  margin: 0px 10px;
   padding: 0;
+  width: 100%;
   display: flex; 
+  flex-direction: column;
   align-items: center;  
 }
 
@@ -104,13 +106,13 @@ body
 
 .add-shopping-item-button 
 {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: #f8f8f8;
   color: #fff;
   border: black solid 1px;
   padding: 0.5rem 0.5rem;
-  margin: 0.1rem 0.5rem 0rem 0rem;
+  margin: 0.6rem 0.5rem 0rem 0rem;
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 50px;
@@ -136,7 +138,7 @@ body
 
 .calculate-item
 {
-  padding: 0px 16px;
+  padding: 4px 16px;
   margin-top:4px;
   background: #696969;
   width: 100%;
@@ -148,6 +150,15 @@ body
   border-top-right-radius: 0;  
   box-shadow: #333 0px 2px 4px;
 }
+
+.category-select
+{
+  margin: 10px 16px 10px 0px;
+  padding: 4px;
+  height: 50px;
+  width: 126px
+}
+
 
 textarea
 {
@@ -162,7 +173,7 @@ textarea
 {
   display: flex;
   margin: 4px;
-  padding: 4px;
+  padding: 8px;
   width: 96%;
   justify-content: space-between;
   gap: 16%;

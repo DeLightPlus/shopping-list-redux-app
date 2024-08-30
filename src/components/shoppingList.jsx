@@ -12,6 +12,7 @@ const ShoppingList = () => {
   const [editInput, setEditInput] = useState('');
   const [editPrice, setEditPrice] = useState(0); 
   const [editQuant, setEditQuant] = useState(1); 
+  const [editCategory, setEditCategory] = useState(''); 
   const [editExtraNotes, setEditExtraNotes] = useState('');
 
   useEffect(() =>
@@ -155,6 +156,11 @@ const ShoppingItem = ({ item,
   <div className='shopping-list-item '>
     <div className='list-item-group'>
       <span>{item.shoppingItem}</span>
+
+      <div className='inc_dec_quant' id='price'>            
+          <span>¥:{item.category}</span>        
+      </div>
+      
       <div className='inc_dec_quant' id='price'>            
           <span><small>Price:</small> R{ item.price}</span>        
       </div>

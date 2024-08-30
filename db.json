@@ -42,8 +42,9 @@
       "id": "2",
       "uid": "admin",
       "shoppingItem": "Milk",
-      "price": 30,
-      "quantity": 2,
+      "price": "30",
+      "quantity": "2",
+      "category": "Dairy",
       "extraNotes": "Brand 2L",
       "purchased": false
     },
@@ -53,6 +54,7 @@
       "shoppingItem": "Bread",
       "price": "14",
       "quantity": "2",
+      "category": "Dairy",
       "extraNotes": "Brand, Brown",
       "purchased": false
     },
@@ -62,6 +64,7 @@
       "shoppingItem": "Apples",
       "price": "20",
       "quantity": "2",
+      "category": "Dairy",
       "extraNotes": "Green Apples, 2kg"
     },
     {
@@ -70,6 +73,7 @@
       "shoppingItem": "Apples",
       "price": "18",
       "quantity": 1,
+      "category": "Dairy",
       "extraNotes": "Red Apples, 2kg"
     },
     {
@@ -78,6 +82,7 @@
       "shoppingItem": "Milk",
       "price": "25",
       "quantity": "2",
+      "category": "Dairy",
       "extraNotes": "2L, Full Cream, Fresh"
     },
     {
@@ -86,7 +91,35 @@
       "shoppingItem": "Mixed Vegetable",
       "price": "10",
       "quantity": "2",
+      "category": "Dairy",
       "extraNotes": "1kg"
+    },
+    {
+      "id": "1725001828052",
+      "uid": "admin",
+      "shoppingItem": "A",
+      "price": "0",
+      "quantity": "0",
+      "category": "",
+      "extraNotes": ""
+    },
+    {
+      "id": "1725016010221",
+      "uid": "1ff8",
+      "shoppingItem": "Marshmello",
+      "price": "50",
+      "quantity": "1",
+      "category": "Snacks",
+      "extraNotes": "500g"
+    },
+    {
+      "id": "1725016010237",
+      "uid": "1ff8",
+      "shoppingItem": "",
+      "price": "0",
+      "quantity": "1",
+      "category": "",
+      "extraNotes": ""
     }
   ]
 }

@@ -82,8 +82,8 @@ export const editShoppingItem = createAsyncThunk(
   async (item) => {
     console.log('edit_item.obj', item);
     
-    const { id, shoppingItem, price, quantity, extraNotes} = item;
-    const response = await axios.patch(`${url}/${id}`, { shoppingItem, price, quantity, extraNotes });
+    const { id, shoppingItem, price, quantity, category, extraNotes} = item;
+    const response = await axios.patch(`${url}/${id}`, { shoppingItem, price, quantity, category, extraNotes });
     return response.data;
   }
 );

@@ -17,8 +17,9 @@ function AddShoppingItem()
 
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(0); 
-  const [price, setPrice] = useState(0);  
-  const [extraNotes, setExtraNotes] = useState('');  
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("");    
+  const [extraNotes, setExtraNotes] = useState("");  
   
 
   const handleAddItem = () => {
@@ -29,13 +30,15 @@ function AddShoppingItem()
         shoppingItem: `${item}`, 
         price: `${price}`, 
         quantity: `${quantity}`, 
+        category: `${category}`,
         extraNotes: `${extraNotes}` 
       }));
     
     setItem("");
     setQuantity(1);
-    setPrice(0)
-    setExtraNotes("")
+    setPrice(0);
+    setCategory("");
+    setExtraNotes("");
   };
 
   return (
@@ -43,7 +46,7 @@ function AddShoppingItem()
       <div style={{padding:'0px 8px 0px 0px',border:'darkgrey solid 1px', display:'flex', justifyContent:'space-between'}}>
         <div className="add-shopping-item-group">      
           <label className="add-shopping-item-label">
-            ItemName <span></span>
+            ItemName 
           </label>
           <input className="add-shopping-item-input"
             type="text" placeholder="(e.g. Apple)"        
@@ -73,18 +76,38 @@ function AddShoppingItem()
       </div>
 
       <div className="calculate-item">
-        <span>{item && <strong>{item} <sup>x{quantity}</sup> = R{price * quantity}</strong>}</span>
+        <span>{item && <strong>{item} <sub>x{quantity}</sub> = R{price * quantity}</strong>}</span>
       </div>
 
       <div style={{padding:'0px 1px', display:'flex', justifyContent:'space-between'}}>
+        
+        <select className="category-select" 
+          onChange={(e) => setCategory(e.target.value)}>
+          <option value="Beverages">Beverages</option>
+          <option value="Bread/Bakery">Bread/Bakery</option>
+          <option value="Canned/Jarred Goods">Canned/Jarred Goods</option>
+          <option value="Cleaning supplies">Cleaning supplies</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Dry/Baking Goods">Dry/Baking Goods</option>
+          <option value="Fresh Produce">Fresh Produce</option>
+          <option value="Frozen Foods">Frozen Foods</option>
+          <option value="Meat, Fish & Other Proteins">Meat, Fish & Other Proteins</option>   
+          <option value="Paper Goods">Paper Goods</option>       
+          <option value="Personal Care">Personal Care</option>       
+          <option value="Snacks">Snacks</option>
+          <option value="Spices & Seasoning">Spices & Seasoning</option>          
+          <option value="Other">Other</option>
+        </select>
+        
         <textarea value={extraNotes} placeholder="Extra Notes:"
           onChange={(e) => setExtraNotes(e.target.value)} />
+
         
-        <div className="add-shopping-item-group">
-            <button className="add-shopping-item-button" onClick={handleAddItem}>
+        <button className="add-shopping-item-button"
+            onClick={handleAddItem}>
               <div className="icn">➕</div>
-            </button>
-        </div>
+        </button>
+        
       </div>
 
       
