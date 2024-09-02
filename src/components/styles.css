@@ -61,7 +61,7 @@
   
   .register-form, .login-form {
     max-width: 400px;
-    margin: 40px auto;
+    margin: 10% auto;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;

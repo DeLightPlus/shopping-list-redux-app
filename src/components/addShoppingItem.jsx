@@ -11,13 +11,13 @@ function AddShoppingItem()
   const user = useSelector((state) => state.user);
   if (user) 
   {
-    console.log('Logged-in user:', user);
+    // console.log('Logged-in user:', user);
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
 
   const [item, setItem] = useState("");
-  const [quantity, setQuantity] = useState(0); 
-  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(""); 
+  const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");    
   const [extraNotes, setExtraNotes] = useState("");  
   
@@ -35,8 +35,8 @@ function AddShoppingItem()
       }));
     
     setItem("");
-    setQuantity(1);
-    setPrice(0);
+    setQuantity('');
+    setPrice('');
     setCategory("");
     setExtraNotes("");
   };
@@ -76,7 +76,10 @@ function AddShoppingItem()
       </div>
 
       <div className="calculate-item">
-        <span>{item && <strong>{item} <sub>x{quantity}</sub> = R{price * quantity}</strong>}</span>
+        <span>
+          {item && 
+            <strong>{item} <sub>x{quantity}</sub> = R{price * quantity}</strong>}
+        </span>
       </div>
 
       <div style={{padding:'0px 1px', display:'flex', justifyContent:'space-between'}}>
@@ -108,9 +111,8 @@ function AddShoppingItem()
               <div className="icn">➕</div>
         </button>
         
-      </div>
+      </div>  
 
-      
     </div>
   );
 }

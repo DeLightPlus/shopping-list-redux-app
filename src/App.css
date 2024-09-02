@@ -176,13 +176,29 @@ textarea
   padding: 8px;
   width: 96%;
   justify-content: space-between;
-  gap: 16%;
+  gap: 2%;
 }
 
-.expense_search input
+.expense_search .search-input-button, input
 {
   flex: 1;
   max-width: 400px;
+}
+
+.expense_search input
+{  
+  
+  width: 80%;
+  border-radius: 25px;
+}
+
+.expense_search button
+{  
+  padding: 5px;
+  border-radius: 25px;
+
+  transform: translate(-100%, 3%);
+  background: #333;
 }
 
 ul.shopping-list 
@@ -198,8 +214,7 @@ ul.shopping-list
 .shopping-list li 
 {
   padding: 0.5rem;
-  border-bottom: 1px solid #696969;
-  
+  border-bottom: 1px solid #696969;  
 }
 
 .shopping-list li:first-child 

@@ -120,6 +120,33 @@
       "quantity": "1",
       "category": "",
       "extraNotes": ""
+    },
+    {
+      "id": "1725257785662",
+      "uid": "10ee",
+      "shoppingItem": "Apples",
+      "price": "25",
+      "quantity": "2",
+      "category": "Fresh Produce",
+      "extraNotes": "2kg, Green Apples"
+    },
+    {
+      "id": "1725258852862",
+      "uid": "10ee",
+      "shoppingItem": "Notebook",
+      "price": "20",
+      "quantity": "2",
+      "category": "Paper Goods",
+      "extraNotes": "A4, Quire4"
+    },
+    {
+      "id": "1725268235810",
+      "uid": "10ee",
+      "shoppingItem": "Apples",
+      "price": "30",
+      "quantity": "1",
+      "category": "Fresh Produce",
+      "extraNotes": "Red Apples, 2.5kg"
     }
   ]
 }

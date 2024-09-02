@@ -88,6 +88,20 @@ export const editShoppingItem = createAsyncThunk(
   }
 );
 
+export const searchShoppingList = createAsyncThunk(
+  'shoppingList/searchShoppingList',
+  async (searchTerm) => {
+
+    let search_item = searchTerm.searchTerm;
+    let uid = searchTerm.uid;
+
+    const response = await axios.get(`${url}?uid=${uid}&shoppingItem=${search_item}`);
+    console.log('search_item.obj', searchTerm, ' res',response);   
+    
+    return response.data;
+  }
+);
+
 // Slice
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
@@ -110,9 +124,11 @@ const shoppingListSlice = createSlice({
       // Handle editShoppingItem
       .addCase(editShoppingItem.fulfilled, (state, action) => {
         const index = state.findIndex(item => item.id === action.payload.id);
-        if (index !== -1) {
-          state[index] = action.payload;
-        }
+        if (index !== -1) { state[index] = action.payload; }
+      })
+      // Handle searchShoppingItems
+      .addCase(searchShoppingList.fulfilled, (state, action) => {
+        return action.payload;
       });
   }
 });
