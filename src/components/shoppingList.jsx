@@ -78,15 +78,20 @@ const ShoppingList = () => {
   return (
     <>
       <form className="expense_search" onSubmit={handleSearch}>
-      <label><strong>Estimated Total Expense:</strong> R{totalExpense} </label>
+        <div style={{display:'flex', flexDirection:'column', alignItems:'start'}}>  
+          <label><strong>Estimated Total Expense:</strong> 
+          R{totalExpense} </label>
+          
+        </div>
+      
 
-     <div className='search-input-button'>
+      <div className='search-input-button'>
         <input placeholder="Search" value={searchTerm} 
           onChange={(e) => setSearchTerm(e.target.value)}/>
         <button type="submit">🔍</button>
       </div>
 
-     <div style={{display:'flex', flexDirection:'column', alignItems:'end'}}>
+      <div style={{display:'flex', flexDirection:'column', alignItems:'end'}}>
         <label>
           Sort by:
           <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
