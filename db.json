@@ -35,6 +35,12 @@
       "username": "Rod",
       "email": "rod@e.mail",
       "password": "123"
+    },
+    {
+      "id": "e105",
+      "username": "kay",
+      "email": "kat@e.mail",
+      "password": "1234"
     }
   ],
   "shoppingList": [
@@ -147,6 +153,15 @@
       "quantity": "1",
       "category": "Fresh Produce",
       "extraNotes": "Red Apples, 2.5kg"
+    },
+    {
+      "id": "1727769086949",
+      "uid": "e105",
+      "shoppingItem": "1",
+      "price": "1",
+      "quantity": "2",
+      "category": "Canned/Jarred Goods",
+      "extraNotes": "s"
     }
   ]
 }
