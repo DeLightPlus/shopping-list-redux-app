@@ -17,7 +17,7 @@ export const signInUser = createAsyncThunk(
                 && user.password === credentials.password )
             
             if(user)
-                return { id: user.id, username: user.username, signedIn: true } 
+                return { id: user.id, username: user.username, email: user.email  ,signedIn: true } 
             else
                 alert('user not found!!')
         }
@@ -31,6 +31,7 @@ export const signInUser = createAsyncThunk(
 const initialState = {
     id:null,
     username: null,
+    email: null,
     signedIn: false  
 };
 
@@ -43,12 +44,14 @@ export const userSlice = createSlice({
         
         state.id = action.payload.id
         state.username = action.payload.username;
+        state.email = action.payload.email;
         state.signedIn = true;
       },
 
     signOut: (state) => {
         state.id = null;
-        state.username = '';     
+        state.username = '';   
+        state.email = '';
         state.signedIn = false;  
         sessionStorage.removeItem('user')
     },
@@ -57,7 +60,8 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signInUser.fulfilled, (state, action) => {
         state.id = action.payload.id;
-        state.username = action.payload.username;      
+        state.username = action.payload.username;
+        state.email = action.payload.email;
         state.signedIn = true;  
 
         console.log('signinuser.action.payload|extra', action.payload);
@@ -67,9 +71,11 @@ export const userSlice = createSlice({
     builder.addCase(signInUser.rejected, (state, action) => {  
       state.id = null;
       state.user = null;
+      state.email = null
       state.signedIn = false;
     });
   },
 });
 
 export const { signIn, signOut } = userSlice.actions;
+

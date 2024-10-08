@@ -28,6 +28,8 @@ const ShoppingList = () => {
   const [sortOption, setSortOption] = useState(SORT_OPTIONS.NAME_ASC);
   const [categoryFilter, setCategoryFilter] = useState('');
 
+  const [emailToShare, SetEmailToShare] =  useState('');
+
   useEffect(() => {
     if (signedIn) {
       dispatch(fetchShoppingList(user.id));
@@ -75,13 +77,32 @@ const ShoppingList = () => {
     shoppingList.filter(item => !categoryFilter || item.category === categoryFilter)
   );
 
+  const handleShareWithEmail = () =>
+  {
+    let sender = user;
+    let recipient = emailToShare;
+    let list_to_share = shoppingList;
+
+    let data = { "sender": sender , "recipient": emailToShare, "data": list_to_share}
+    
+    console.log(sender.email ,' ,Sharing ShoppingList | ', list_to_share ,' | to: ', emailToShare);
+
+
+  }
+
   return (
     <>
       <form className="expense_search" onSubmit={handleSearch}>
         <div style={{display:'flex', flexDirection:'column', alignItems:'start'}}>  
-          <label><strong>Estimated Total Expense:</strong> 
-          R{totalExpense} </label>
-          
+          <label>
+            <strong>Estimated Total Expense:</strong> 
+            R{totalExpense} 
+          </label><hr/>
+          <div className='search-input-button'>
+            <input placeholder="Email" value={emailToShare} 
+              onChange={(e) => SetEmailToShare(e.target.value)}/>
+            <button onClick={handleShareWithEmail}>share</button>
+          </div>
         </div>
       
 

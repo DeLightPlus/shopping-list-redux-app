@@ -41,6 +41,18 @@
       "username": "kay",
       "email": "kat@e.mail",
       "password": "1234"
+    },
+    {
+      "id": "5043",
+      "username": "Kabelo Peter Matlakala",
+      "email": "matlakalakabelo1@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "1586",
+      "username": "",
+      "email": "",
+      "password": ""
     }
   ],
   "shoppingList": [
@@ -162,6 +174,24 @@
       "quantity": "2",
       "category": "Canned/Jarred Goods",
       "extraNotes": "s"
+    },
+    {
+      "id": "1728385673729",
+      "uid": "5043",
+      "shoppingItem": "Apples red",
+      "price": "15",
+      "quantity": "4",
+      "category": "Fresh Produce",
+      "extraNotes": "2kg each, red"
+    },
+    {
+      "id": "1728385745521",
+      "uid": "5043",
+      "shoppingItem": "milk",
+      "price": "30",
+      "quantity": "1",
+      "category": "Dairy",
+      "extraNotes": "2l fresh"
     }
   ]
 }
