@@ -62,7 +62,7 @@ body
   padding: 0.5em;
 
   width: 97%;
-  height: 20%;
+  /* height: 20%; */
   background-color: #f7f7f7;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -183,6 +183,7 @@ textarea
 {
   flex: 1;
   max-width: 400px;  
+  width: 100%;
 }
 
 .expense_search input
@@ -267,8 +268,7 @@ ul.shopping-list
   border-radius: 50px;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  cursor: pointer;
-  
+  cursor: pointer;  
 }
 
 .shopping-list-item button:hover 

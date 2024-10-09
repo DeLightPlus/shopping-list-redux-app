@@ -192,6 +192,92 @@
       "quantity": "1",
       "category": "Dairy",
       "extraNotes": "2l fresh"
+    },
+    {
+      "id": "1728455880974",
+      "uid": "5043",
+      "shoppingItem": "beef",
+      "price": "59",
+      "quantity": "1",
+      "category": "",
+      "extraNotes": "1kg\n"
+    }
+  ],
+  "shoppingListToShare": [
+    {
+      "id": "1725258852862",
+      "sender": "kat@e.mail",
+      "recipient": "matlakalakabelo1@gmail.com",
+      "data": [
+        {
+          "id": "1727769086949",
+          "uid": "e105",
+          "shoppingItem": "Canned Beans",
+          "price": "15",
+          "quantity": "2",
+          "category": "Canned/Jarred Goods",
+          "extraNotes": "s"
+        },
+        {
+          "id": "1604345725510",
+          "uid": "u5043",
+          "shoppingItem": "milk",
+          "price": "30",
+          "quantity": "1",
+          "category": "Dairy",
+          "extraNotes": "2l fullcream"
+        }
+      ]
+    },
+    {
+      "id": "0f0c",
+      "sender": "matlakalakabelo1@gmail.com",
+      "recipient": "admin@email.com",
+      "data": [
+        {
+          "id": "1728385673729",
+          "uid": "5043",
+          "shoppingItem": "Apples red",
+          "price": "15",
+          "quantity": "4",
+          "category": "Fresh Produce",
+          "extraNotes": "2kg each, red"
+        },
+        {
+          "id": "1728385745521",
+          "uid": "5043",
+          "shoppingItem": "milk",
+          "price": "30",
+          "quantity": "1",
+          "category": "Dairy",
+          "extraNotes": "2l fresh"
+        }
+      ]
+    },
+    {
+      "id": "6074",
+      "sender": "matlakalakabelo1@gmail.com",
+      "recipient": "mat@gmail.com",
+      "data": [
+        {
+          "id": "1728385673729",
+          "uid": "5043",
+          "shoppingItem": "Apples red",
+          "price": "15",
+          "quantity": "4",
+          "category": "Fresh Produce",
+          "extraNotes": "2kg each, red"
+        },
+        {
+          "id": "1728385745521",
+          "uid": "5043",
+          "shoppingItem": "milk",
+          "price": "30",
+          "quantity": "1",
+          "category": "Dairy",
+          "extraNotes": "2l fresh"
+        }
+      ]
     }
   ]
 }

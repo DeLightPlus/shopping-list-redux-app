@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchShoppingList, deleteShoppingItem, editShoppingItem, searchShoppingList } from '../redux/shoppingListReducer';
 import SearchItem from './searchItem';
+import axios from 'axios';
 
 const SORT_OPTIONS = {
   NAME_ASC: 'Name (A-Z)',
@@ -29,6 +30,7 @@ const ShoppingList = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
 
   const [emailToShare, SetEmailToShare] =  useState('');
+  const [toShareData, setToShareData] = useState({});
 
   useEffect(() => {
     if (signedIn) {
@@ -77,23 +79,42 @@ const ShoppingList = () => {
     shoppingList.filter(item => !categoryFilter || item.category === categoryFilter)
   );
 
-  const handleShareWithEmail = () =>
+  const handleShareWithEmail = async () =>
   {
     let sender = user;
     let recipient = emailToShare;
     let list_to_share = shoppingList;
 
-    let data = { "sender": sender , "recipient": emailToShare, "data": list_to_share}
+    if(sender === recipient)
+    {
+      alert("You cant share with yourself.")
+    }
+    else
+    {
+      let data = { "sender": sender.email , "recipient": recipient, "data": list_to_share};  
+      setToShareData(data);    
+      console.log(sender.email ,' ,Sharing ShoppingList | ', list_to_share ,' | to: ', recipient);
+      
+      try {
+        const response = await axios.post('http://localhost:8000/shoppingListToShare', data);
+
+          console.log(response.status);
+          if(response.status === 201)
+          {
+              alert('list has been sent to: ' + recipient);
+          }
+        // Redirect to login page or dashboard
+      } catch (error) {
+        alert(error.message);
+      }
+    }
     
-    console.log(sender.email ,' ,Sharing ShoppingList | ', list_to_share ,' | to: ', emailToShare);
-
-
   }
 
   return (
     <>
       <form className="expense_search" onSubmit={handleSearch}>
-        <div style={{display:'flex', flexDirection:'column', alignItems:'start'}}>  
+        <div style={{display:'flex', flexDirection:'column', alignItems:'start', flex:'1'}}>  
           <label>
             <strong>Estimated Total Expense:</strong> 
             R{totalExpense} 
@@ -273,7 +294,7 @@ const ShoppingItem = ({
     <div className='list-item-group'>
       <span>{item.shoppingItem}</span>
       <div className='inc_dec_quant' id='category'>
-        <span>Category: {item.category}</span>
+        <span>{item.category}</span>
       </div>
       <div className='inc_dec_quant' id='price'>
         <span><small>Price:</small> R{item.price}</span>
