@@ -59,6 +59,7 @@
     {
       "id": "2",
       "uid": "admin",
+      "type": "groceries",
       "shoppingItem": "Milk",
       "price": "30",
       "quantity": "2",
@@ -69,6 +70,7 @@
     {
       "id": "3",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "Bread",
       "price": "14",
       "quantity": "2",
@@ -79,6 +81,7 @@
     {
       "id": "1724851803332",
       "uid": "2f1d",
+      "type": "groceries",
       "shoppingItem": "Apples",
       "price": "20",
       "quantity": "2",
@@ -88,6 +91,7 @@
     {
       "id": "1724914490986",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "Apples",
       "price": "18",
       "quantity": 1,
@@ -97,6 +101,7 @@
     {
       "id": "1724925190670",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "Milk",
       "price": "25",
       "quantity": "2",
@@ -106,6 +111,7 @@
     {
       "id": "1724933277455",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "Mixed Vegetable",
       "price": "10",
       "quantity": "2",
@@ -115,6 +121,7 @@
     {
       "id": "1725001828052",
       "uid": "admin",
+      "type": "groceries",
       "shoppingItem": "A",
       "price": "0",
       "quantity": "0",
@@ -124,6 +131,7 @@
     {
       "id": "1725016010221",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "Marshmello",
       "price": "50",
       "quantity": "1",
@@ -133,6 +141,7 @@
     {
       "id": "1725016010237",
       "uid": "1ff8",
+      "type": "groceries",
       "shoppingItem": "",
       "price": "0",
       "quantity": "1",
@@ -142,6 +151,7 @@
     {
       "id": "1725257785662",
       "uid": "10ee",
+      "type": "groceries",
       "shoppingItem": "Apples",
       "price": "25",
       "quantity": "2",
@@ -151,6 +161,7 @@
     {
       "id": "1725258852862",
       "uid": "10ee",
+      "type": "groceries",
       "shoppingItem": "Notebook",
       "price": "20",
       "quantity": "2",
@@ -160,6 +171,7 @@
     {
       "id": "1725268235810",
       "uid": "10ee",
+      "type": "groceries",
       "shoppingItem": "Apples",
       "price": "30",
       "quantity": "1",
@@ -169,7 +181,8 @@
     {
       "id": "1727769086949",
       "uid": "e105",
-      "shoppingItem": "1",
+      "type": "groceries",
+      "shoppingItem": "Peaches",
       "price": "1",
       "quantity": "2",
       "category": "Canned/Jarred Goods",
@@ -178,6 +191,7 @@
     {
       "id": "1728385673729",
       "uid": "5043",
+      "type": "groceries",
       "shoppingItem": "Apples red",
       "price": "15",
       "quantity": "4",
@@ -187,6 +201,7 @@
     {
       "id": "1728385745521",
       "uid": "5043",
+      "type": "groceries",
       "shoppingItem": "milk",
       "price": "30",
       "quantity": "1",
@@ -196,11 +211,42 @@
     {
       "id": "1728455880974",
       "uid": "5043",
+      "type": "groceries",
       "shoppingItem": "beef",
       "price": "59",
       "quantity": "1",
       "category": "",
       "extraNotes": "1kg\n"
+    },
+    {
+      "id": "1728539363810",
+      "uid": null,
+      "type": "groceries",
+      "shoppingItem": "potatoes",
+      "price": "47",
+      "quantity": "1",
+      "category": "",
+      "extraNotes": "5KG BAG"
+    },
+    {
+      "id": "1728539365417",
+      "uid": null,
+      "type": "groceries",
+      "shoppingItem": "Mixed Veg",
+      "price": "15",
+      "quantity": "4",
+      "category": "",
+      "extraNotes": "1KG Bag"
+    },
+    {
+      "id": "1728568199307",
+      "uid": "5043",
+      "type": "equipment",
+      "shoppingItem": "",
+      "price": "30",
+      "quantity": "1",
+      "category": "",
+      "extraNotes": "1L sunlight liquid"
     }
   ],
   "shoppingListToShare": [
@@ -212,6 +258,7 @@
         {
           "id": "1727769086949",
           "uid": "e105",
+          "type": "Groceries",
           "shoppingItem": "Canned Beans",
           "price": "15",
           "quantity": "2",
@@ -221,6 +268,7 @@
         {
           "id": "1604345725510",
           "uid": "u5043",
+          "type": "Groceries",
           "shoppingItem": "milk",
           "price": "30",
           "quantity": "1",
@@ -237,6 +285,7 @@
         {
           "id": "1728385673729",
           "uid": "5043",
+          "type": "groceries",
           "shoppingItem": "Apples red",
           "price": "15",
           "quantity": "4",
@@ -246,6 +295,7 @@
         {
           "id": "1728385745521",
           "uid": "5043",
+          "type": "groceries",
           "shoppingItem": "milk",
           "price": "30",
           "quantity": "1",
@@ -262,6 +312,7 @@
         {
           "id": "1728385673729",
           "uid": "5043",
+          "type": "groceries",
           "shoppingItem": "Apples red",
           "price": "15",
           "quantity": "4",
@@ -271,11 +322,69 @@
         {
           "id": "1728385745521",
           "uid": "5043",
+          "type": "groceries",
           "shoppingItem": "milk",
           "price": "30",
           "quantity": "1",
           "category": "Dairy",
           "extraNotes": "2l fresh"
+        }
+      ]
+    },
+    {
+      "id": "85bc",
+      "sender": "matlakalakabelo1@gmail.com",
+      "recipient": "newa@e.mail",
+      "data": [
+        {
+          "id": "1728385673729",
+          "uid": "5043",
+          "type": "groceries",
+          "shoppingItem": "Apples red",
+          "price": "15",
+          "quantity": "4",
+          "category": "Fresh Produce",
+          "extraNotes": "2kg each, red"
+        },
+        {
+          "id": "1728385745521",
+          "uid": "5043",
+          "type": "groceries",
+          "shoppingItem": "milk",
+          "price": "30",
+          "quantity": "1",
+          "category": "Dairy",
+          "extraNotes": "2l fresh"
+        },
+        {
+          "id": "1728455880974",
+          "uid": "5043",
+          "type": "groceries",
+          "shoppingItem": "beef",
+          "price": "59",
+          "quantity": "1",
+          "category": "",
+          "extraNotes": "1kg\n"
+        },
+        {
+          "id": "1728539363810",
+          "uid": null,
+          "type": "groceries",
+          "shoppingItem": "potatoes",
+          "price": "47",
+          "quantity": "1",
+          "category": "",
+          "extraNotes": "5KG BAG"
+        },
+        {
+          "id": "1728539365417",
+          "uid": null,
+          "type": "groceries",
+          "shoppingItem": "Mixed Veg",
+          "price": "15",
+          "quantity": "4",
+          "category": "",
+          "extraNotes": "1KG Bag"
         }
       ]
     }

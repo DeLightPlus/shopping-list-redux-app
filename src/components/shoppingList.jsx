@@ -25,8 +25,10 @@ const ShoppingList = () => {
   const [editQuant, setEditQuant] = useState(1); 
   const [editCategory, setEditCategory] = useState(''); 
   const [editExtraNotes, setEditExtraNotes] = useState('');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState(SORT_OPTIONS.NAME_ASC);
+  const [listTypeFilter, setListTypeFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState('');
 
   const [emailToShare, SetEmailToShare] =  useState('');
@@ -76,7 +78,15 @@ const ShoppingList = () => {
   };
 
   const filteredAndSortedItems = handleSort(
-    shoppingList.filter(item => !categoryFilter || item.category === categoryFilter)
+    shoppingList.filter((item) => 
+      {
+        if (listTypeFilter === "") 
+        {
+          return true;
+        }
+
+        return item.type === listTypeFilter;
+      }).filter((item) => !categoryFilter || item.category === categoryFilter)
   );
 
   const handleShareWithEmail = async () =>
@@ -95,7 +105,8 @@ const ShoppingList = () => {
       setToShareData(data);    
       console.log(sender.email ,' ,Sharing ShoppingList | ', list_to_share ,' | to: ', recipient);
       
-      try {
+      try 
+      {
         const response = await axios.post('http://localhost:8000/shoppingListToShare', data);
 
           console.log(response.status);
@@ -104,7 +115,9 @@ const ShoppingList = () => {
               alert('list has been sent to: ' + recipient);
           }
         // Redirect to login page or dashboard
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         alert(error.message);
       }
     }
@@ -147,7 +160,7 @@ const ShoppingList = () => {
         </label>
         
         <label>
-          Filter by category:
+          Filter by Category:
           <select className="category-filter" value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}>
             <option value="">All</option>
@@ -165,14 +178,23 @@ const ShoppingList = () => {
             <option value="Snacks">Snacks</option>
             <option value="Spices & Seasoning">Spices & Seasoning</option>          
             <option value="Other">Other</option>
-          </select>
+          </select>          
+        </label>
 
-          {/* <input
-            type="text"
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            placeholder="Enter category..."
-          /> */}
+        <label>
+          Filter by List Type:
+          <select
+            className="category-filter"
+            value={listTypeFilter}
+            onChange={(e) => setListTypeFilter(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="groceries">Groceries</option>
+            <option value="household">Household Items</option>
+            <option value="equipment">Equipment</option>
+            
+            {/* Add more options as needed */}
+          </select>
         </label>
       </div>
       </form>   
@@ -292,7 +314,7 @@ const ShoppingItem = ({
 }) => (
   <div className='shopping-list-item'>
     <div className='list-item-group'>
-      <span>{item.shoppingItem}</span>
+      <span>{item.shoppingItem} | type: {<small>{item.type}</small>}</span> 
       <div className='inc_dec_quant' id='category'>
         <span>{item.category}</span>
       </div>

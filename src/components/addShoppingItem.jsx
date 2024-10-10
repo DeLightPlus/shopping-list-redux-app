@@ -15,6 +15,10 @@ function AddShoppingItem()
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
 
+  const [listType, setListType] = useState("groceries");
+  const [listTypeInput, setListTypeIput] = useState("");
+  const [listTypes, setListTypes] = useState([]);
+
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(""); 
   const [price, setPrice] = useState("");
@@ -27,6 +31,7 @@ function AddShoppingItem()
       addShoppingItem({ 
         id: `${Date.now()}`, 
         uid: user.id, 
+        type: `${listType}`,
         shoppingItem: `${item}`, 
         price: `${price}`, 
         quantity: `${quantity}`, 
@@ -105,11 +110,27 @@ function AddShoppingItem()
         <textarea value={extraNotes} placeholder="Extra Notes:"
           onChange={(e) => setExtraNotes(e.target.value)} />
 
+        <div  style={{display:"flex", flexDirection:"row", gap:"10px"}}>
+          <div style={{display:"flex", flexDirection:"column", textAlign:'start'}}>
+            <label htmlFor=""><small>List Name/Type</small></label>
+            {
+              !listTypeInput &&
+              <select value={listType} onChange={(e)=> setListType(e.target.value)}>
+                {/* <option value="">List name/type</option> */}
+                <option value="groceries">Groceries</option>
+                <option value="equipment">Household Items</option>
+              </select>
+            }
+
+            <input placeholder="List Type" style={{width:'100%'}} 
+               value={listTypeInput} onChange={(e)=>setListTypeIput(e.target.value)}/>
+          </div>
+          <button className="add-shopping-item-button"
+              onClick={handleAddItem}>
+                <div className="icn">➕</div>
+          </button>
+        </div>   
         
-        <button className="add-shopping-item-button"
-            onClick={handleAddItem}>
-              <div className="icn">➕</div>
-        </button>
         
       </div>  
 
