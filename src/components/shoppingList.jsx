@@ -137,69 +137,66 @@ const ShoppingList = () => {
               onChange={(e) => SetEmailToShare(e.target.value)}/>
             <button onClick={handleShareWithEmail}>share</button>
           </div>
+        </div>      
+
+        <div className='search-input-button'>
+          <input placeholder="Search" value={searchTerm} 
+            onChange={(e) => setSearchTerm(e.target.value)}/>
+          <button type="submit">🔍</button>
         </div>
-      
 
-      <div className='search-input-button'>
-        <input placeholder="Search" value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)}/>
-        <button type="submit">🔍</button>
-      </div>
+        <div style={{display:'flex', flexDirection:'column', alignItems:'end'}}>
+          <label>
+            Sort by:
+            <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+              {
+                  Object.entries(SORT_OPTIONS).map(([key, value]) => (
+                  <option key={key} value={value}>
+                  {value}
+                  </option>
+              ))}
+              </select>
+          </label>
+          
+          <label>
+            Filter by Category:
+            <select className="category-filter" value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}>
+              <option value="">All</option>
+              <option value="Beverages">Beverages</option>
+              <option value="Bread/Bakery">Bread/Bakery</option>
+              <option value="Canned/Jarred Goods">Canned/Jarred Goods</option>
+              <option value="Cleaning supplies">Cleaning supplies</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Dry/Baking Goods">Dry/Baking Goods</option>
+              <option value="Fresh Produce">Fresh Produce</option>
+              <option value="Frozen Foods">Frozen Foods</option>
+              <option value="Meat, Fish & Other Proteins">Meat, Fish & Other Proteins</option>   
+              <option value="Paper Goods">Paper Goods</option>       
+              <option value="Personal Care">Personal Care</option>       
+              <option value="Snacks">Snacks</option>
+              <option value="Spices & Seasoning">Spices & Seasoning</option>          
+              <option value="Other">Other</option>
+            </select>          
+          </label>
 
-      <div style={{display:'flex', flexDirection:'column', alignItems:'end'}}>
-        <label>
-          Sort by:
-          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-            {
-                Object.entries(SORT_OPTIONS).map(([key, value]) => (
-                <option key={key} value={value}>
-                {value}
-                </option>
-            ))}
+          <label>
+            Filter by List Type:
+            <select
+              className="category-filter"
+              value={listTypeFilter}
+              onChange={(e) => setListTypeFilter(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="groceries">Groceries</option>
+              <option value="household">Household Items</option>
+              <option value="equipment">Equipment</option>
+              
+              {/* Add more options as needed */}
             </select>
-        </label>
-        
-        <label>
-          Filter by Category:
-          <select className="category-filter" value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}>
-            <option value="">All</option>
-            <option value="Beverages">Beverages</option>
-            <option value="Bread/Bakery">Bread/Bakery</option>
-            <option value="Canned/Jarred Goods">Canned/Jarred Goods</option>
-            <option value="Cleaning supplies">Cleaning supplies</option>
-            <option value="Dairy">Dairy</option>
-            <option value="Dry/Baking Goods">Dry/Baking Goods</option>
-            <option value="Fresh Produce">Fresh Produce</option>
-            <option value="Frozen Foods">Frozen Foods</option>
-            <option value="Meat, Fish & Other Proteins">Meat, Fish & Other Proteins</option>   
-            <option value="Paper Goods">Paper Goods</option>       
-            <option value="Personal Care">Personal Care</option>       
-            <option value="Snacks">Snacks</option>
-            <option value="Spices & Seasoning">Spices & Seasoning</option>          
-            <option value="Other">Other</option>
-          </select>          
-        </label>
-
-        <label>
-          Filter by List Type:
-          <select
-            className="category-filter"
-            value={listTypeFilter}
-            onChange={(e) => setListTypeFilter(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="groceries">Groceries</option>
-            <option value="household">Household Items</option>
-            <option value="equipment">Equipment</option>
-            
-            {/* Add more options as needed */}
-          </select>
-        </label>
-      </div>
-      </form>   
-
-      
+          </label>
+        </div>
+      </form>        
 
       <ul className='shopping-list'>
         {filteredAndSortedItems.map((item) => (
@@ -340,6 +337,7 @@ const ShoppingItem = ({
         <div className='icn'>🗑</div>
       </button>
     </div>
+
     <div className='list-item-group'>
       <textarea value={item.extraNotes} readOnly />
     </div>

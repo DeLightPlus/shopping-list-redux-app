@@ -15,20 +15,9 @@ function AddShoppingItem()
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
 
-  const [listType, setListType] = useState("groceries");
-  const [listTypeInput, setListTypeIput] = useState("");
-  const [listTypes, setListTypes] = useState([]);
-
-  const [item, setItem] = useState("");
-  const [quantity, setQuantity] = useState(""); 
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");    
-  const [extraNotes, setExtraNotes] = useState("");  
-  
-
+ 
   const handleAddItem = () => {
-    dispatch( 
-      addShoppingItem({ 
+    dispatch(addShoppingItem({ 
         id: `${Date.now()}`, 
         uid: user.id, 
         type: `${listType}`,
@@ -130,10 +119,8 @@ function AddShoppingItem()
                 <div className="icn">➕</div>
           </button>
         </div>   
-        
-        
-      </div>  
-
+                
+      </div> 
     </div>
   );
 }

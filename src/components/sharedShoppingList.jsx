@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const SharedShoppingList = () => {
+  const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
+
   const [sharedLists, setSharedLists] = useState([]);
   const [selectedList, setSelectedList] = useState(null);
 
@@ -27,16 +29,21 @@ const SharedShoppingList = () => {
 
   return (
     <div>
-      <select value={selectedList} onChange={handleSelectChange}>
-        <option value="">shared shoppingList({sharedLists.length})</option>
-        {
-          sharedLists.map((list, index) => (
-            <option key={index} value={list.sender}>
-              {list.sender}'s list
-            </option>
-          ))
-        }
-      </select> <button>Clone</button>|<button>Delete</button>
+      { signedIn &&
+        <>
+          <select value={selectedList} onChange={handleSelectChange}>
+            <option value="">shared shoppingList({sharedLists.length})</option>
+            {
+              sharedLists.map((list, index) => (
+                <option key={index} value={list.sender}>
+                  sender: {list.sender}
+                </option>
+              ))
+            }
+          </select> 
+          <button>Clone</button>|<button>Delete</button>
+        </>
+      }
 
       {
         selectedList && (
