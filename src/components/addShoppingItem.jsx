@@ -2,6 +2,7 @@ import { addShoppingItem } from "../redux/shoppingListReducer";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
+import { shoppingCategories } from "../constants";
 
 function AddShoppingItem() {
   const dispatch = useDispatch();
@@ -32,9 +33,10 @@ function AddShoppingItem() {
         extraNotes: `${extraNotes}` 
       }));
     
+    // setListType("")
     setItem("");
-    setQuantity('');
-    setPrice('');
+    setQuantity("");
+    setPrice("");
     setCategory("");
     setExtraNotes("");
   };
@@ -84,20 +86,11 @@ function AddShoppingItem() {
         
         <select className="category-select" 
           onChange={(e) => setCategory(e.target.value)}>
-          <option value="Beverages">Beverages</option>
-          <option value="Bread/Bakery">Bread/Bakery</option>
-          <option value="Canned/Jarred Goods">Canned/Jarred Goods</option>
-          <option value="Cleaning supplies">Cleaning supplies</option>
-          <option value="Dairy">Dairy</option>
-          <option value="Dry/Baking Goods">Dry/Baking Goods</option>
-          <option value="Fresh Produce">Fresh Produce</option>
-          <option value="Frozen Foods">Frozen Foods</option>
-          <option value="Meat, Fish & Other Proteins">Meat, Fish & Other Proteins</option>   
-          <option value="Paper Goods">Paper Goods</option>       
-          <option value="Personal Care">Personal Care</option>       
-          <option value="Snacks">Snacks</option>
-          <option value="Spices & Seasoning">Spices & Seasoning</option>          
-          <option value="Other">Other</option>
+          {shoppingCategories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
         
         <textarea value={extraNotes} placeholder="Extra Notes:"

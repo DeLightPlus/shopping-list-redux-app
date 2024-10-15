@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchShoppingList, deleteShoppingItem, editShoppingItem, searchShoppingList } from '../redux/shoppingListReducer';
 import axios from 'axios';
-
-const SORT_OPTIONS = {
-  NAME_ASC: 'Name (A-Z)',
-  NAME_DESC: 'Name (Z-A)',
-  PRICE_ASC: 'Price (Low to High)',
-  PRICE_DESC: 'Price (High to Low)',
-  QUANTITY_ASC: 'Quantity (Low to High)',
-  QUANTITY_DESC: 'Quantity (High to Low)',
-};
+import { SORT_OPTIONS, shoppingCategories } from '../constants';
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
@@ -126,6 +118,8 @@ const ShoppingList = () => {
         alert(error.message);
       }
     }
+
+    SetEmailToShare('');
     
   }
 
@@ -202,23 +196,13 @@ const ShoppingList = () => {
           
           <label>
             Filter by Category:
-            <select className="category-filter" value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}>
+            <select className="category-filter" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
               <option value="">All</option>
-              <option value="Beverages">Beverages</option>
-              <option value="Bread/Bakery">Bread/Bakery</option>
-              <option value="Canned/Jarred Goods">Canned/Jarred Goods</option>
-              <option value="Cleaning supplies">Cleaning supplies</option>
-              <option value="Dairy">Dairy</option>
-              <option value="Dry/Baking Goods">Dry/Baking Goods</option>
-              <option value="Fresh Produce">Fresh Produce</option>
-              <option value="Frozen Foods">Frozen Foods</option>
-              <option value="Meat, Fish & Other Proteins">Meat, Fish & Other Proteins</option>   
-              <option value="Paper Goods">Paper Goods</option>       
-              <option value="Personal Care">Personal Care</option>       
-              <option value="Snacks">Snacks</option>
-              <option value="Spices & Seasoning">Spices & Seasoning</option>          
-              <option value="Other">Other</option>
+              {shoppingCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>          
           </label>
 
