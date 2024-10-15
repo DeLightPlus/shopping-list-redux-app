@@ -72,10 +72,10 @@
       "uid": "1ff8",
       "type": "groceries",
       "shoppingItem": "Bread",
-      "price": "14",
+      "price": "18",
       "quantity": "2",
-      "category": "Dairy",
-      "extraNotes": "Brand, Brown",
+      "category": "Bread/Bakery",
+      "extraNotes": "brown from bakery",
       "purchased": false
     },
     {
@@ -93,9 +93,9 @@
       "uid": "1ff8",
       "type": "groceries",
       "shoppingItem": "Apples",
-      "price": "18",
-      "quantity": 1,
-      "category": "Dairy",
+      "price": "20",
+      "quantity": "2",
+      "category": "Fresh Product",
       "extraNotes": "Red Apples, 2kg"
     },
     {
@@ -141,12 +141,12 @@
     {
       "id": "1725016010237",
       "uid": "1ff8",
-      "type": "groceries",
-      "shoppingItem": "",
-      "price": "0",
-      "quantity": "1",
-      "category": "",
-      "extraNotes": ""
+      "type": "",
+      "shoppingItem": "exercise book",
+      "price": "15",
+      "quantity": "6",
+      "category": "Paper goods",
+      "extraNotes": "college exercise book, A4, 72 pages "
     },
     {
       "id": "1725257785662",
@@ -225,7 +225,7 @@
       "shoppingItem": "potatoes",
       "price": "47",
       "quantity": "1",
-      "category": "",
+      "category": "Fresh Product",
       "extraNotes": "5KG BAG"
     },
     {
@@ -235,7 +235,7 @@
       "shoppingItem": "Mixed Veg",
       "price": "15",
       "quantity": "4",
-      "category": "",
+      "category": "Fresh Product",
       "extraNotes": "1KG Bag"
     },
     {

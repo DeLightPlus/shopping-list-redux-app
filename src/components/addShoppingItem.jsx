@@ -3,19 +3,23 @@ import { addShoppingItem } from "../redux/shoppingListReducer";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 
-
-function AddShoppingItem() 
-{
+function AddShoppingItem() {
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
-  if (user) 
-  {
+  if (user) {
     // console.log('Logged-in user:', user);
     // You can access the user's data here, e.g. user.name, user.email, etc.
   }
 
- 
+  const [item, setItem] = useState("");
+  const [quantity, setQuantity] = useState(""); 
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");    
+  const [extraNotes, setExtraNotes] = useState("");  
+  const [listType, setListType] = useState("");
+  const [listTypeInput, setListTypeInput] = useState("");  
+
   const handleAddItem = () => {
     dispatch(addShoppingItem({ 
         id: `${Date.now()}`, 
@@ -43,7 +47,7 @@ function AddShoppingItem()
             ItemName 
           </label>
           <input className="add-shopping-item-input"
-            type="text" placeholder="(e.g. Apple)"        
+            type="text" placeholder="(e.g. Apple)" value={item}      
             onChange={(e) => setItem(e.target.value)}
           />
         </div>
@@ -112,7 +116,7 @@ function AddShoppingItem()
             }
 
             <input placeholder="List Type" style={{width:'100%'}} 
-               value={listTypeInput} onChange={(e)=>setListTypeIput(e.target.value)}/>
+               value={listTypeInput} onChange={(e)=>setListTypeInput(e.target.value)}/>
           </div>
           <button className="add-shopping-item-button"
               onClick={handleAddItem}>

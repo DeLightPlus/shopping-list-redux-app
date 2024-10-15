@@ -340,6 +340,12 @@ ul.shopping-list
 
 }
 
+.inc_dec_quant#type
+{width: 112px;}
+
+.inc_dec_quant#category
+{width: 112px;}
+
 .inc_dec_quant#price
 {width: 112px;}
 

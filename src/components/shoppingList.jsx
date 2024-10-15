@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchShoppingList, deleteShoppingItem, editShoppingItem, searchShoppingList } from '../redux/shoppingListReducer';
-import SearchItem from './searchItem';
 import axios from 'axios';
 
 const SORT_OPTIONS = {
@@ -23,6 +22,7 @@ const ShoppingList = () => {
   const [editInput, setEditInput] = useState('');
   const [editPrice, setEditPrice] = useState(0); 
   const [editQuant, setEditQuant] = useState(1); 
+  const [editType, setEditType] = useState(''); 
   const [editCategory, setEditCategory] = useState(''); 
   const [editExtraNotes, setEditExtraNotes] = useState('');
 
@@ -89,8 +89,13 @@ const ShoppingList = () => {
       }).filter((item) => !categoryFilter || item.category === categoryFilter)
   );
 
-  const handleShareWithEmail = async () =>
-  {
+  const handleShareWithEmail = async (event) => {
+    event.preventDefault();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(emailToShare)) {
+      alert('Invalid email address');
+      return;
+    }
     let sender = user;
     let recipient = emailToShare;
     let list_to_share = shoppingList;
@@ -112,7 +117,7 @@ const ShoppingList = () => {
           console.log(response.status);
           if(response.status === 201)
           {
-              alert('list has been sent to: ' + recipient);
+              alert('list has been sent to: ' + recipient );
           }
         // Redirect to login page or dashboard
       } 
@@ -123,6 +128,43 @@ const ShoppingList = () => {
     }
     
   }
+
+  const validateInput = () => {
+    if (editInput.trim() === '') {
+      alert('Please enter a shopping item');
+      return false;
+    }
+    if (editPrice < 0) {
+      alert('Price cannot be negative');
+      return false;
+    }
+    if (editQuant < 1) {
+      alert('Quantity must be at least 1');
+      return false;
+    }
+    return true;
+  };
+
+  const handleUpdate = () => {
+    if (validateInput()) {
+      dispatch(editShoppingItem({
+        id: editing,
+        type: editType,
+        shoppingItem: editInput,
+        price: editPrice,
+        quantity: editQuant,
+        category: editCategory,
+        extraNotes: editExtraNotes
+      }));
+      setEditing(null);
+      setEditType('');
+      setEditInput('');
+      setEditPrice(0);
+      setEditQuant(1);
+      setEditCategory('');
+      setEditExtraNotes('');
+    }
+  };
 
   return (
     <>
@@ -206,20 +248,24 @@ const ShoppingList = () => {
               <EditForm
                 item={item}
                 setEditing={setEditing}
+                editType={editType} setEditType={setEditType}
                 editInput={editInput} setEditInput={setEditInput}
                 editPrice={editPrice} setEditPrice={setEditPrice}
                 editQuant={editQuant} setEditQuant={setEditQuant}
-                editCategory={editCategory} setEditCategory={setEditCategory}
+                editCategory={editCategory} setEditCategory={ setEditCategory}
                 editExtraNotes={editExtraNotes} setEditExtraNotes={setEditExtraNotes}
                 dispatch={dispatch}
+                handleUpdate={handleUpdate}
               />            
             ) : (
               <ShoppingItem
                 item={item}
                 setEditing={setEditing}
+                setEditType={setEditType}
                 setEditInput={setEditInput}
                 setEditPrice={setEditPrice}
                 setEditQuant={setEditQuant}
+                setEditCategory={setEditCategory}
                 setEditExtraNotes={setEditExtraNotes}
                 dispatch={dispatch}
               />
@@ -233,11 +279,13 @@ const ShoppingList = () => {
 
 const EditForm = ({ 
   item, setEditing,
+  editType, setEditType,
   editInput, setEditInput, 
   editPrice, setEditPrice, 
-  editQuant, setEditQuant, 
+  editQuant, setEditQuant,   
+  editCategory, setEditCategory,  
   editExtraNotes, setEditExtraNotes, 
-  dispatch 
+  dispatch, handleUpdate
 }) => (
   <div className='shopping-list-item' id='edit-form'>
     <div className='list-item-group'>
@@ -246,8 +294,32 @@ const EditForm = ({
         value={editInput}
         onChange={(e) => setEditInput(e.target.value)}
       />
+      <div className='inc_dec_quant' id='type'>
+        <small><b>Type</b></small>
+        <input
+          type='text'
+          value={editType}
+          onChange={(e) => {
+            const inputValue = e.target.value;
+            setEditType(inputValue);
+          }}
+        />
+      </div>
+
+      <div className='inc_dec_quant' id='category'>
+        <small><b>Cat.</b></small>
+        <input
+          type='text'
+          value={editCategory}
+          onChange={(e) => {
+            const inputValue = e.target.value;
+            setEditCategory(inputValue);
+          }}
+        />
+      </div>
+
       <div className='inc_dec_quant' id='price'>
-        <sup><b>Price</b></sup>
+        <small><b>Price</b></small>
         <input
           type='number'
           value={editPrice}
@@ -258,7 +330,7 @@ const EditForm = ({
         />
       </div>
       <div className='inc_dec_quant' id='qty'>
-        <sup><b>Qty</b></sup>
+        <small><b>Qty.</b></small>
         <input
           type='number'
           value={editQuant}
@@ -270,23 +342,7 @@ const EditForm = ({
       </div>
       <button
         id='update'
-        onClick={() => {
-          if (editExtraNotes.trim() !== '') {
-            dispatch(editShoppingItem({
-              id: item.id,
-              shoppingItem: editInput,
-              price: editPrice,
-              quantity: editQuant,
-              extraNotes: editExtraNotes
-            }));
-            setEditing(null);
-            setEditInput('');
-            setEditPrice(0);
-            setEditQuant(1);
-          } else {
-            alert('Please enter some extra notes');
-          }
-        }}
+        onClick={handleUpdate}
       >
         <div className='icn'>♲</div>
       </button>
@@ -303,9 +359,11 @@ const EditForm = ({
 const ShoppingItem = ({
   item,
   setEditing,
+  setEditType,
   setEditInput,
   setEditPrice,
   setEditQuant,
+  setEditCategory,
   setEditExtraNotes,
   dispatch
 }) => (
@@ -326,9 +384,11 @@ const ShoppingItem = ({
       </div>
       <button onClick={() => {
         setEditing(item.id);
+        setEditType(item.type);
         setEditInput(item.shoppingItem);
         setEditPrice(item.price);
         setEditQuant(item.quantity);
+        setEditCategory(item.category);
         setEditExtraNotes(item.extraNotes);
       }}>
         <div className='icn'>📝</div>
