@@ -130,9 +130,54 @@
   
   /* Dashboard Styles */
   
-  .dashboard {
+  .dashboard 
+  {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
     background-color:azure
+}
+
+.sharedList
+{
+  position: relative;
+  /* top: 125px; */
+  width: 62%;
+  /* height: 90%; */
+  background-color: #f0f0f0;
+  z-index: 10;
+}
+
+.sharedList select
+{
+  width: 256px;
+  padding: 8px;
+  margin: 2px;
+}
+
+.sharedList button
+{
+  width: 86px;
+  padding: 8px;
+  margin: 2px;
+}
+
+.sharedList ul
+{  
+  padding: 8px;
+  background: #a5a5a5;
+  height: 48vh;
+  overflow-y: auto;
+}
+
+.sharedList li
+{  
+  padding: 4px;
+}
+
+.sharedList li button
+{
+  padding: 2px;
+  width: 64px;
+  float: right;
 }

@@ -28,7 +28,7 @@ const SharedShoppingList = () => {
   };
 
   return (
-    <div>
+    <div className='sharedList'>
       { signedIn &&
         <>
           <select value={selectedList} onChange={handleSelectChange}>
@@ -49,13 +49,13 @@ const SharedShoppingList = () => {
         selectedList && (
           <div>
             <hr/>
-            <ul style={{overflow:'auto', height:'40%'}}>
+            <ul>
             {
               sharedLists
                 .find((list) => list.sender === selectedList)
                 .data.map((item) => (
                   <li key={item.id} style={{textAlign:'start'}}>
-                    <span>Item: {item.shoppingItem}  </span>
+                    <span>Item({item.type}): {item.shoppingItem}  <button className='insert_btn'>insert</button></span>
                     <br />
                     <small>Category: {item.category} | </small>
                     <small>Quantity: {item.quantity} | </small>

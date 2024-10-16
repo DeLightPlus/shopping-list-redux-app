@@ -33,7 +33,7 @@ function AddShoppingItem() {
         extraNotes: `${extraNotes}` 
       }));
     
-    // setListType("")
+    setListType("")
     setItem("");
     setQuantity("");
     setPrice("");
@@ -60,7 +60,11 @@ function AddShoppingItem() {
           </label>
           <input className="add-shopping-item-input"
             type="number" placeholder="(e.g. 10)"  value={price}      
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              const inputValue = e.target.value;
+              setPrice(inputValue < 0 ? Math.abs(inputValue) : (inputValue));
+            }
+            }
           />
         </div>
 
@@ -70,7 +74,7 @@ function AddShoppingItem() {
           </label>
           <input className="add-shopping-item-input"
             type="number" placeholder="Quantity"  value={quantity}      
-            onChange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => setQuantity(Math.abs(e.target.value))}
           />
         </div>        
       </div>

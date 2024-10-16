@@ -215,7 +215,7 @@
       "shoppingItem": "beef",
       "price": "59",
       "quantity": "1",
-      "category": "",
+      "category": "Meat, Fish & Other Proteins",
       "extraNotes": "1kg\n"
     },
     {
@@ -242,10 +242,10 @@
       "id": "1728568199307",
       "uid": "5043",
       "type": "equipment",
-      "shoppingItem": "",
+      "shoppingItem": "Dish washing liquid",
       "price": "30",
       "quantity": "1",
-      "category": "",
+      "category": "Cleaning supplies",
       "extraNotes": "1L sunlight liquid"
     }
   ],

@@ -35,6 +35,7 @@ const ShoppingList = () => {
   useEffect(() => {
     // Console log for debugging
     console.log('shoppingList', shoppingList);
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
   }, [shoppingList]);
 
   const calculateTotalExpense = (shoppingList) => {
@@ -191,7 +192,7 @@ const ShoppingList = () => {
                   {value}
                   </option>
               ))}
-              </select>
+            </select>
           </label>
           
           <label>
@@ -283,22 +284,25 @@ const EditForm = ({
         <input
           type='text'
           value={editType}
-          onChange={(e) => {
-            const inputValue = e.target.value;
-            setEditType(inputValue);
-          }}
+          onChange={(e) => { setEditType(inputValue); }}
         />
       </div>
 
       <div className='inc_dec_quant' id='category'>
         <small><b>Cat.</b></small>
+        <select className="category-editselect" 
+          onChange={(e) => setEditCategory(e.target.value)}>
+          {shoppingCategories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+
         <input
           type='text'
           value={editCategory}
-          onChange={(e) => {
-            const inputValue = e.target.value;
-            setEditCategory(inputValue);
-          }}
+          onChange={(e) => { (e.target.value); }}
         />
       </div>
 
@@ -309,7 +313,7 @@ const EditForm = ({
           value={editPrice}
           onChange={(e) => {
             const inputValue = e.target.value;
-            setEditPrice(inputValue < 0 ? Math.abs(inputValue) : inputValue);
+            setEditPrice(inputValue < 0 ? Math.abs(inputValue) : Math.abs(inputValue));
           }}
         />
       </div>
