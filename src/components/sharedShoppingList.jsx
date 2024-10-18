@@ -40,7 +40,7 @@ const SharedShoppingList = () => {
                 </option>
               ))
             }
-          </select> 
+          </select>| 
           <button>Clone</button>|<button>Delete</button>
         </>
       }

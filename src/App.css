@@ -53,15 +53,26 @@ body
   margin: 0;
 }
 
+.addItem_btn
+{
+  align-self: flex-start;
+  margin-left: 32px;
+  padding: 10px;
+}
+
+.back_btn
+{
+  font-weight: 800;
+}
+
 .add-shopping-item-container 
 {
   display: flex;
-  flex-direction: column;
-  
+  flex-direction: column;  
   justify-content: space-evenly;
   padding: 0.5em;
 
-  width: 97%;
+  /* width: 97%; */
   /* height: 20%; */
   background-color: #f7f7f7;
   border: 1px solid #ddd;
@@ -82,12 +93,12 @@ body
 
 .add-shopping-item-input 
 {
-  padding: 0.5rem;
+  padding: 0.1rem 4px;
   font-size: 1svw;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  height: 30px;
+  /* height: 20px; */
   margin: 0.26rem;
 }
 

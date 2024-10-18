@@ -27,7 +27,8 @@ const ShoppingList = () => {
   const [toShareData, setToShareData] = useState({});
 
   useEffect(() => {
-    if (signedIn) {
+    if (signedIn) 
+    {
       dispatch(fetchShoppingList(user.id));
     }
   }, [signedIn, user.id, dispatch]);

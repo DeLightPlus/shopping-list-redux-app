@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 import { shoppingCategories } from "../constants";
 
-function AddShoppingItem() {
+function AddShoppingItem({ setShowAddForm }) {
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
@@ -43,6 +43,7 @@ function AddShoppingItem() {
 
   return (
     <div className="add-shopping-item-container">
+      <button className="back_btn" onClick={() => setShowAddForm(false)} > ^ </button>
       <div style={{padding:'0px 8px 0px 0px',border:'darkgrey solid 1px', display:'flex', justifyContent:'space-between'}}>
         <div className="add-shopping-item-group">      
           <label className="add-shopping-item-label">

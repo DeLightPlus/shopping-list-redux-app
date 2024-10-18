@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard.jsx';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import TermsOfService from './components/TermsOfService.jsx';
 
 function App() 
 {      
@@ -19,7 +20,8 @@ function App()
         <Routes>          
           <Route path='/register' element={<Register/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/' element={<Dashboard/>} />                           
+          <Route path='/' element={<Dashboard/>} />   
+          <Route path='/terms' element={<TermsOfService/>} />                        
         </Routes>      
       </BrowserRouter>           
     </div>
