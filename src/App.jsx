@@ -5,7 +5,7 @@ import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
 import Dashboard from './components/Dashboard.jsx';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import TermsOfService from './components/TermsOfService.jsx';
 
@@ -22,7 +22,8 @@ function App()
           <Route path='/login' element={<Login/>} />
           <Route path='/' element={<Dashboard/>} />   
           <Route path='/terms' element={<TermsOfService/>} />                        
-        </Routes>      
+        </Routes>  
+        <div className="footer"><Link>Terms of service</Link> </div>    
       </BrowserRouter>           
     </div>
   )

@@ -61,16 +61,18 @@ function Login() {
                 <label className="form-label">
                     Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input" />
-                </label>
-                <label className="form-label">
+                </label><br/>
+                {/* <label className="form-label">
                     <input type="checkbox" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />
                     I accept the <Link to="/terms">Terms of Service</Link>
-                </label>
+                </label> */}
                 {/* <br /> */}
                 <button type="submit" className="form-button">Login</button>
             </form>
             <p className="form-text">
-                Don't have an account? <Link to="/register" className="form-link">Register</Link></p>
+                Don't have an account? 
+                <Link to="/register" className="form-link">Register</Link>
+            </p>
             {/* <br /> */}
             {/* <p><Link to="/terms">Terms of service</Link></p> */}
         </div>
