@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchShoppingList, deleteShoppingItem, editShoppingItem, searchShoppingList } from '../redux/shoppingListReducer';
+import { fetchShoppingList, deleteShoppingItem, editShoppingItem } from '../redux/shoppingListReducer';
 import axios from 'axios';
 import { SORT_OPTIONS, shoppingCategories } from '../constants';
 
@@ -9,33 +9,30 @@ const ShoppingList = () => {
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
   const shoppingList = useSelector((state) => state.shoppingList);
-  
+
   const [editing, setEditing] = useState(null);
   const [editInput, setEditInput] = useState('');
-  const [editPrice, setEditPrice] = useState(0); 
-  const [editQuant, setEditQuant] = useState(1); 
-  const [editType, setEditType] = useState(''); 
-  const [editCategory, setEditCategory] = useState(''); 
+  const [editPrice, setEditPrice] = useState(0);
+  const [editQuant, setEditQuant] = useState(1);
+  const [editType, setEditType] = useState('');
+  const [editCategory, setEditCategory] = useState('');
   const [editExtraNotes, setEditExtraNotes] = useState('');
 
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState(SORT_OPTIONS.NAME_ASC);
-  const [listTypeFilter, setListTypeFilter] = useState("");
+  const [listTypeFilter, setListTypeFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
 
-  const [emailToShare, SetEmailToShare] =  useState('');
+  const [emailToShare, SetEmailToShare] = useState('');
   const [toShareData, setToShareData] = useState({});
 
   useEffect(() => {
-    if (signedIn) 
-    {
+    if (signedIn) {
       dispatch(fetchShoppingList(user.id));
     }
   }, [signedIn, user.id, dispatch]);
 
   useEffect(() => {
-    // Console log for debugging
-    console.log('shoppingList', shoppingList);
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
   }, [shoppingList]);
 
@@ -44,13 +41,6 @@ const ShoppingList = () => {
   };
 
   const totalExpense = calculateTotalExpense(shoppingList);
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    if (searchTerm && user) {
-      dispatch(searchShoppingList({ searchTerm, uid: user.id }));
-    }
-  };
 
   const handleSort = (items) => {
     switch (sortOption) {
@@ -71,17 +61,14 @@ const ShoppingList = () => {
     }
   };
 
-  const filteredAndSortedItems = handleSort(
-    shoppingList.filter((item) => 
-      {
-        if (listTypeFilter === "") 
-        {
-          return true;
-        }
+  const filteredItems = shoppingList.filter((item) => {
+    const matchesSearch = item.shoppingItem.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = listTypeFilter === "" || item.type === listTypeFilter;
+    const matchesCategory = !categoryFilter || item.category === categoryFilter;
+    return matchesSearch && matchesType && matchesCategory;
+  });
 
-        return item.type === listTypeFilter;
-      }).filter((item) => !categoryFilter || item.category === categoryFilter)
-  );
+  const filteredAndSortedItems = handleSort(filteredItems);
 
   const handleShareWithEmail = async (event) => {
     event.preventDefault();
@@ -94,35 +81,23 @@ const ShoppingList = () => {
     let recipient = emailToShare;
     let list_to_share = shoppingList;
 
-    if(sender === recipient)
-    {
-      alert("You cant share with yourself.")
-    }
-    else
-    {
-      let data = { "sender": sender.email , "recipient": recipient, "data": list_to_share};  
-      setToShareData(data);    
-      console.log(sender.email ,' ,Sharing ShoppingList | ', list_to_share ,' | to: ', recipient);
-      
-      try 
-      {
-        const response = await axios.post('http://localhost:8000/shoppingListToShare', data);
+    if (sender.email === recipient) {
+      alert("You can't share with yourself.");
+    } else {
+      let data = { sender: sender.email, recipient, data: list_to_share };
+      setToShareData(data);
+      console.log(sender.email, ', Sharing ShoppingList | ', list_to_share, ' | to: ', recipient);
 
-          console.log(response.status);
-          if(response.status === 201)
-          {
-              alert('list has been sent to: ' + recipient );
-          }
-        // Redirect to login page or dashboard
-      } 
-      catch (error) 
-      {
+      try {
+        const response = await axios.post('http://localhost:8000/shoppingListToShare', data);
+        if (response.status === 201) {
+          alert('List has been sent to: ' + recipient);
+        }
+      } catch (error) {
         alert(error.message);
       }
     }
-
     SetEmailToShare('');
-    
   }
 
   const validateInput = () => {
@@ -164,40 +139,38 @@ const ShoppingList = () => {
 
   return (
     <>
-      <form className="expense_search" onSubmit={handleSearch}>
-        <div style={{display:'flex', flexDirection:'column', alignItems:'start', flex:'1'}}>  
+      <form className="expense_search" onSubmit={(e) => e.preventDefault()}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', flex: '1' }}>
           <label>
-            <strong>Estimated Total Expense:</strong> 
-            R{totalExpense} 
-          </label><hr/>
+            <strong>Estimated Total Expense:</strong>
+            R{totalExpense}
+          </label>
           <div className='search-input-button'>
-            <input placeholder="Email" value={emailToShare} 
-              onChange={(e) => SetEmailToShare(e.target.value)}/>
+            <input placeholder="Email" value={emailToShare}
+              onChange={(e) => SetEmailToShare(e.target.value)} />
             <button onClick={handleShareWithEmail}>share</button>
           </div>
-        </div>      
-
-        <div className='search-input-button'>
-          <input placeholder="Search" value={searchTerm} 
-            onChange={(e) => setSearchTerm(e.target.value)}/>
-          <button type="submit">🔍</button>
         </div>
 
-        <div style={{display:'flex', flexDirection:'column', alignItems:'end'}}>
-          <label>
-            Sort by:
+        <div className='search-input-button'>
+          <input placeholder="Search" value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} />          
+        </div>
+
+        <div className='filter'>
+          <label>          
             <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
               {
-                  Object.entries(SORT_OPTIONS).map(([key, value]) => (
+                Object.entries(SORT_OPTIONS).map(([key, value]) => (
                   <option key={key} value={value}>
-                  {value}
+                    {value}
                   </option>
-              ))}
+                ))}
             </select>
           </label>
-          
+
           <label>
-            Filter by Category:
+            Category:
             <select className="category-filter" value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
               <option value="">All</option>
               {shoppingCategories.map((category) => (
@@ -205,11 +178,11 @@ const ShoppingList = () => {
                   {category}
                 </option>
               ))}
-            </select>          
+            </select>
           </label>
 
           <label>
-            Filter by List Type:
+           Type:
             <select
               className="category-filter"
               value={listTypeFilter}
@@ -219,43 +192,41 @@ const ShoppingList = () => {
               <option value="groceries">Groceries</option>
               <option value="household">Household Items</option>
               <option value="equipment">Equipment</option>
-              
-              {/* Add more options as needed */}
             </select>
           </label>
         </div>
-      </form>        
+      </form>
 
       <ul className='shopping-list'>
         {filteredAndSortedItems.map((item) => (
           <li key={item.id}>
             {
               editing === item.id ? (
-              <EditForm
-                item={item}
-                setEditing={setEditing}
-                editType={editType} setEditType={setEditType}
-                editInput={editInput} setEditInput={setEditInput}
-                editPrice={editPrice} setEditPrice={setEditPrice}
-                editQuant={editQuant} setEditQuant={setEditQuant}
-                editCategory={editCategory} setEditCategory={ setEditCategory}
-                editExtraNotes={editExtraNotes} setEditExtraNotes={setEditExtraNotes}
-                dispatch={dispatch}
-                handleUpdate={handleUpdate}
-              />            
-            ) : (
-              <ShoppingItem
-                item={item}
-                setEditing={setEditing}
-                setEditType={setEditType}
-                setEditInput={setEditInput}
-                setEditPrice={setEditPrice}
-                setEditQuant={setEditQuant}
-                setEditCategory={setEditCategory}
-                setEditExtraNotes={setEditExtraNotes}
-                dispatch={dispatch}
-              />
-            )}
+                <EditForm
+                  item={item}
+                  setEditing={setEditing}
+                  editType={editType} setEditType={setEditType}
+                  editInput={editInput} setEditInput={setEditInput}
+                  editPrice={editPrice} setEditPrice={setEditPrice}
+                  editQuant={editQuant} setEditQuant={setEditQuant}
+                  editCategory={editCategory} setEditCategory={setEditCategory}
+                  editExtraNotes={editExtraNotes} setEditExtraNotes={setEditExtraNotes}
+                  dispatch={dispatch}
+                  handleUpdate={handleUpdate}
+                />
+              ) : (
+                <ShoppingItem
+                  item={item}
+                  setEditing={setEditing}
+                  setEditType={setEditType}
+                  setEditInput={setEditInput}
+                  setEditPrice={setEditPrice}
+                  setEditQuant={setEditQuant}
+                  setEditCategory={setEditCategory}
+                  setEditExtraNotes={setEditExtraNotes}
+                  dispatch={dispatch}
+                />
+              )}
           </li>
         ))}
       </ul>
@@ -285,7 +256,7 @@ const EditForm = ({
         <input
           type='text'
           value={editType}
-          onChange={(e) => { setEditType(inputValue); }}
+          onChange={(e) => { setEditType(e.target.value); }}
         />
       </div>
 
@@ -303,7 +274,7 @@ const EditForm = ({
         <input
           type='text'
           value={editCategory}
-          onChange={(e) => { (e.target.value); }}
+          onChange={(e) => { setEditCategory(e.target.value); }}
         />
       </div>
 
@@ -357,37 +328,43 @@ const ShoppingItem = ({
   dispatch
 }) => (
   <div className='shopping-list-item'>
-    <div className='list-item-group'>
-      <span>{item.shoppingItem} | type: {<small>{item.type}</small>}</span> 
+    <div className='list-item-group' id=''>
+      <span>{item.shoppingItem} | {<small>{item.type}</small>}</span>
       <div className='inc_dec_quant' id='category'>
         <span>{item.category}</span>
       </div>
-      <div className='inc_dec_quant' id='price'>
-        <span><small>Price:</small> R{item.price}</span>
+
+      <div className="otherAtt">
+        <div className='inc_dec_quant' id='price'>
+          <span><small>Price:</small> R{item.price}</span>
+        </div>
+        <div className='inc_dec_quant' id='Qty'>
+          <span><small>Qty:</small> {item.quantity}</span>
+        </div>
+        <div className='inc_dec_quant' id='total'>
+          <span><small>Total:</small> R{item.price * item.quantity}</span>
+        </div>        
       </div>
-      <div className='inc_dec_quant' id='Qty'>
-        <span><small>Qty:</small> {item.quantity}</span>
+
+      <div className="btn-h-group">
+        <button onClick={() => {
+          setEditing(item.id);
+          setEditType(item.type);
+          setEditInput(item.shoppingItem);
+          setEditPrice(item.price);
+          setEditQuant(item.quantity);
+          setEditCategory(item.category);
+          setEditExtraNotes(item.extraNotes);
+        }}>
+          <div className='icn'>📝</div>
+        </button>
+        <button id='delete' onClick={() => dispatch(deleteShoppingItem(item.id))}>
+          <div className='icn'>🗑</div>
+        </button>
       </div>
-      <div className='inc_dec_quant' id='total'>
-        <span><small>Total:</small> R{item.price * item.quantity}</span>
-      </div>
-      <button onClick={() => {
-        setEditing(item.id);
-        setEditType(item.type);
-        setEditInput(item.shoppingItem);
-        setEditPrice(item.price);
-        setEditQuant(item.quantity);
-        setEditCategory(item.category);
-        setEditExtraNotes(item.extraNotes);
-      }}>
-        <div className='icn'>📝</div>
-      </button>
-      <button id='delete' onClick={() => dispatch(deleteShoppingItem(item.id))}>
-        <div className='icn'>🗑</div>
-      </button>
     </div>
 
-    <div className='list-item-group'>
+    <div className='textarea'>
       <textarea value={item.extraNotes} readOnly />
     </div>
   </div>

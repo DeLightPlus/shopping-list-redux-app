@@ -1,68 +1,116 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base Styles (Mobile First) */
+#root {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0.25rem;
+  text-align: center;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.HeaderContainer {
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  padding: 1rem;
 }
 
-body {
-  margin: 0;
+.add-shopping-item-group {
+  flex-direction: column; /* Stack inputs vertically */
+}
+
+.add-shopping-item-input {
+  width: 100%; /* Full width on mobile */
+}
+
+.add-shopping-item-button {
+  width: 100%; /* Full width button on mobile */
+}
+
+/* Media Queries */
+@media (min-width: 600px) 
+{
+  .App
+  {
+    background: rgb(185, 185, 185);
+  }
+
+  #root {
+    max-width: 1280px;
+    padding: 2rem;
+  }
+
+  .HeaderContainer {
+    flex-direction: row; /* Align items horizontally on larger screens */
+    justify-content: space-between;
+  }
+
+  .add-shopping-item-group {
+    flex-direction: row; /* Align inputs in a row */
+  }
+
+  .add-shopping-item-input {
+    width: auto; /* Adjust width for larger screens */
+    margin-right: 1rem; /* Add space between inputs */
+  }
+
+  .add-shopping-item-button {
+    width: auto; /* Adjust button size */
+  }
+}
+
+@media (min-width: 768px) 
+{
+  .App
+  {
+    width: 100%;
+    height: 100%;
+    background: grey;
+  }
+
+  ul.shopping-list
+  {
+    height: 100%;
+  }
+  
+  .shopping-list-item 
+{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.list-item-group
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 96%;
+}
+  .list-item-group {
+    width: 100%; /* Full width for larger screens */
+  }
+
+  .expense_search
+  {
+    display: flex;
+    flex-direction: row;
+    margin: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .filter select
+  {
+    width: 200px;
+  }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

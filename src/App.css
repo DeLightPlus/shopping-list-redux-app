@@ -1,10 +1,4 @@
-#root {
-  max-width: 1280px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+
 
 /* Global Styles */
 
@@ -55,9 +49,19 @@ body
 
 .addItem_btn
 {
-  align-self: flex-start;
-  margin-left: 32px;
-  padding: 10px;
+  position: absolute;
+  display: flex;
+
+  bottom: 32px;
+  right: 32px;
+  height: fit-content;
+  width: fit-content;
+
+ 
+  box-shadow: #333 0px 0px 8px 8px;
+  border-radius: 100%;
+  z-index: 10;
+
 }
 
 .back_btn
@@ -76,7 +80,7 @@ body
   /* height: 20%; */
   background-color: #f7f7f7;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 2px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   
 }
@@ -86,9 +90,10 @@ body
   margin: 0px 10px;
   padding: 0;
   width: 100%;
-  display: flex; 
-  flex-direction: column;
-  align-items: center;  
+  display: flex;
+  /* flex-direction: column; */
+  align-items: end;
+  justify-content: space-between;
 }
 
 .add-shopping-item-input 
@@ -96,7 +101,7 @@ body
   padding: 0.1rem 4px;
   font-size: 1svw;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 2px;
   width: 100%;
   /* height: 20px; */
   margin: 0.26rem;
@@ -104,8 +109,7 @@ body
 
 .add-shopping-item-input[type='number'] 
 {
-  width: 64%;
-  
+  width: 64%;  
 }
 
 .add-shopping-item-input::placeholder 
@@ -123,7 +127,7 @@ body
   color: #fff;
   border: black solid 1px;
   padding: 0.5rem 0.5rem;
-  margin: 0.6rem 0.5rem 0rem 0rem;
+  /* margin: 0.6rem 0.5rem 0rem 0rem; */
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 50px;
@@ -185,13 +189,15 @@ textarea
   margin: 10px 16px 10px 0px;
   padding: 2px;
   height: 50px;
-  flex: 1;
+  align-self: start;
+  width: 86%;
   resize: none;
 }
 
 .expense_search
 {
   display: flex;
+  flex-direction: column;
   margin: 4px;
   padding: 8px;
   width: 96%;
@@ -223,14 +229,33 @@ textarea
   color: white;
 }
 
+.filter
+{
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 10px;
+}
+
+.filter select
+{
+  width: 96px;
+}
+
 ul.shopping-list 
 {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
+  height: 100%;
 
   overflow-y: scroll;
+}
+
+ul.shopping-list 
+{
+  overflow-y: auto; /* Enable scrolling */
 }
 
 .shopping-list li 
@@ -262,9 +287,31 @@ ul.shopping-list
 .list-item-group
 {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 96%;
+  gap: 8px;
+}
+
+.otherAtt
+{
+  display: flex;
+  align-items: center ;
+  
+}
+
+.btn-h-group
+{
+  height: 0px;
+  right: 32px;
+  display: flex;
+  align-self: flex-end;
+  transform: translateY(-100px);
+}
+
+.textarea
+{
   width: 96%;
 }
 

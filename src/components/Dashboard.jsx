@@ -15,6 +15,8 @@ function Dashboard()
     const user = useSelector((state) => state.user);
 
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showList, setShowList] = useState(true);
+
 
     useEffect(() => {
     const timeoutId = setTimeout(() => { setShowWelcome(false);
@@ -31,17 +33,19 @@ function Dashboard()
   return (
     <>
         { showWelcome && <h1>Welcome to the Dashboard!</h1> }
-        {console.log(user, ' | ', showAddForm)        }
-                
+        {console.log(user, ' | ', showAddForm) }
+        {console.log(showList," | showlist")  }
+ 
         {
          showAddForm ? 
           <AddShoppingItem setShowAddForm={ setShowAddForm }/> : 
-          <button className="addItem_btn" onClick={() => setShowAddForm(true)}>
-            Add Shopping Item
-          </button> 
+          <div className="addItem_btn">
+          <button className="add-shopping-item-button" onClick={() => setShowAddForm(true)}>
+            ➕
+          </button> </div>
         }
-        <SharedShoppingList/> 
-        <ShoppingList/>
+        <SharedShoppingList showList={showList} setShowList={setShowList}/> 
+        { showList && <ShoppingList/> }
     </>
   );
 }

@@ -69,7 +69,8 @@ function Login() {
                 {/* <br /> */}
                 <button type="submit" className="form-button">Login</button>
             </form>
-            <p className="form-text">Don't have an account? <Link to="/register" className="form-link">Register</Link></p>
+            <p className="form-text">
+                Don't have an account? <Link to="/register" className="form-link">Register</Link></p>
             {/* <br /> */}
             {/* <p><Link to="/terms">Terms of service</Link></p> */}
         </div>

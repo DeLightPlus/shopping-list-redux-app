@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-const SharedShoppingList = () => {
+const SharedShoppingList = ({showList, setShowList}) => {
   const signedIn = useSelector((state) => state.user.signedIn);
   const user = useSelector((state) => state.user);
 
@@ -23,8 +23,15 @@ const SharedShoppingList = () => {
     fetchSharedLists();
   }, [sharedLists]);
 
+
+
   const handleSelectChange = (event) => {
     setSelectedList(event.target.value);
+
+    console.log('selectedList', event.target.value);
+    setShowList(event.target.value === '');
+    
+    
   };
 
   return (
@@ -46,7 +53,7 @@ const SharedShoppingList = () => {
       }
 
       {
-        selectedList && (
+        selectedList && (          
           <div>
             <hr/>
             <ul>

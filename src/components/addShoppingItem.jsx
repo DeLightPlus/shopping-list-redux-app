@@ -44,7 +44,7 @@ function AddShoppingItem({ setShowAddForm }) {
   return (
     <div className="add-shopping-item-container">
       <button className="back_btn" onClick={() => setShowAddForm(false)} > ^ </button>
-      <div style={{padding:'0px 8px 0px 0px',border:'darkgrey solid 1px', display:'flex', justifyContent:'space-between'}}>
+      <div style={{padding:'0px 8px 0px 0px', justifyContent:'space-between'}}>
         <div className="add-shopping-item-group">      
           <label className="add-shopping-item-label">
             ItemName 

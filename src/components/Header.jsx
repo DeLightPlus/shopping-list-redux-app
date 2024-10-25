@@ -38,13 +38,15 @@ const Header = ({ showEntry, setShowEntry }) => {
 
   return (
     <div className='HeaderContainer'>
-      <div className='HeaderTitle'>Shopping List App</div>
+      <div className='HeaderTitle'>
+        <h4 className="" onClick={() => setShowEntry(false)}>
+            <Link to="/" className="">Shopping List App</Link>
+        </h4>
+      </div>
 
       <nav className="nav">
         <ul className="nav-list">
-          <li className="nav-item" onClick={() => setShowEntry(false)}>
-            <Link to="/" className="nav-link">Dashboard</Link>
-          </li>
+          
 
           {!showEntry && !signedIn && (
             <li className="nav-item" onClick={() => setShowEntry(true)}>
@@ -56,7 +58,7 @@ const Header = ({ showEntry, setShowEntry }) => {
           {signedIn && (
             <li className="nav-item">
               <div></div>
-              <Link to="/" className="nav-link">{user}</Link><br/>
+              <Link to="/" className="nav-link">{user.split(' ')[0]}</Link><br/>
                <button className='signOut' onClick={() =>  handleLogout() }>
                   Logout</button> 
             </li>
