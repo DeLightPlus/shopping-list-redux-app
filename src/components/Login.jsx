@@ -31,10 +31,10 @@ function Login() {
             setError('Password must be at least 6 characters long');
             return;
         }
-        if (!termsAccepted) {
-            setError('You must accept the Terms of Service');
-            return;
-        }
+        // if (!termsAccepted) {
+        //     setError('You must accept the Terms of Service');
+        //     return;
+        // }
 
         try {
             const response = await dispatch(signInUser ({ email, password }));
@@ -53,6 +53,7 @@ function Login() {
         <div className="login-form">
             <h2 className="form-title">Login</h2>
             {error && <p className="error-message">{error}</p>}
+
             <form onSubmit={handleSubmit} className="form">
                 <label className="form-label">
                     Email:

@@ -54,6 +54,18 @@
       "username": "",
       "email": "",
       "password": ""
+    },
+    {
+      "id": "df41",
+      "username": "Fifi",
+      "email": "fifi@mlab.com",
+      "password": "1234567890"
+    },
+    {
+      "id": "3b65",
+      "username": "Tumi",
+      "email": "tumi@e.mail.com",
+      "password": "1234567890"
     }
   ],
   "shoppingList": [
@@ -220,16 +232,6 @@
       "extraNotes": "1kg\n"
     },
     {
-      "id": "1728539363810",
-      "uid": null,
-      "type": "groceries",
-      "shoppingItem": "potatoes",
-      "price": "47",
-      "quantity": "1",
-      "category": "Fresh Product",
-      "extraNotes": "5KG BAG"
-    },
-    {
       "id": "1728539365417",
       "uid": null,
       "type": "groceries",
@@ -248,6 +250,16 @@
       "quantity": "1",
       "category": "Cleaning supplies",
       "extraNotes": "1L sunlight liquid"
+    },
+    {
+      "id": "1737628484649",
+      "uid": "3b65",
+      "type": "",
+      "shoppingItem": "Apples",
+      "price": "20",
+      "quantity": "1",
+      "category": "Fresh Produce",
+      "extraNotes": "A pack of red apples"
     }
   ],
   "shoppingListToShare": [
