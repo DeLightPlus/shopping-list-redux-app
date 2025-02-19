@@ -1,12 +1,11 @@
 import './App.css';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 
 import Header from './components/Header.jsx';
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
 import Dashboard from './components/Dashboard.jsx';
-
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
 import TermsOfService from './components/TermsOfService.jsx';
 
 function App() 

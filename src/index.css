@@ -13,7 +13,10 @@
   padding: 1rem;
 }
 
-.add-shopping-item-group {
+.HeaderContainer a { color: aliceblue;}
+
+.add-shopping-item-group
+{
   flex-direction: column; /* Stack inputs vertically */
 }
 

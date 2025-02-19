@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import '../App.css';
 
-import AddShoppingItem from './addShoppingItem';
-import SharedShoppingList from './sharedShoppingList';
+import AddShoppingItem from './AddShoppingItem';
+import SharedShoppingList from './SharedShoppingList';
 import ShoppingList from './shoppingList';
 
 import { useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ function Dashboard()
 
   return (
     <>
-        { showWelcome && <h1>Welcome to the Dashboard!</h1> }
+        { showWelcome && <h1>Welcome to the EasyShopper App!</h1> }
         {console.log(user, ' | ', showAddForm) }
         {console.log(showList," | showlist")  }
  
@@ -44,7 +44,9 @@ function Dashboard()
             ➕
           </button> </div>
         }
+
         <SharedShoppingList showList={showList} setShowList={setShowList}/> 
+
         { showList && <ShoppingList/> }
     </>
   );

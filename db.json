@@ -260,6 +260,26 @@
       "quantity": "1",
       "category": "Fresh Produce",
       "extraNotes": "A pack of red apples"
+    },
+    {
+      "id": "1739980462144",
+      "uid": null,
+      "type": "",
+      "shoppingItem": "",
+      "price": "",
+      "quantity": "",
+      "category": "",
+      "extraNotes": ""
+    },
+    {
+      "id": "1739984177720",
+      "uid": null,
+      "type": "",
+      "shoppingItem": "Apples",
+      "price": "24",
+      "quantity": "2",
+      "category": "Fresh Produce",
+      "extraNotes": "red apples 2kg"
     }
   ],
   "shoppingListToShare": [

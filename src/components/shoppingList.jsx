@@ -137,9 +137,13 @@ const ShoppingList = () => {
     }
   };
 
+  // console.log("list: ", shoppingList);  
+
   return (
     <>
-      <form className="expense_search" onSubmit={(e) => e.preventDefault()}>
+      {
+        shoppingList.length > 0 && (
+        <form className="expense_search" onSubmit={(e) => e.preventDefault()}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', flex: '1' }}>
           <label>
             <strong>Estimated Total Expense:</strong>
@@ -195,7 +199,8 @@ const ShoppingList = () => {
             </select>
           </label>
         </div>
-      </form>
+        </form> )
+      }     
 
       <ul className='shopping-list'>
         {filteredAndSortedItems.map((item) => (

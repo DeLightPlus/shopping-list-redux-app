@@ -48,7 +48,7 @@ const SharedShoppingList = ({showList, setShowList}) => {
               ))
             }
           </select>| 
-          <button>Clone</button>|<button>Delete</button>
+          <button>Clone</button>|<button>🚮</button>
         </>
       }
 

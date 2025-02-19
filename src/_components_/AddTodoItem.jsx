@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodoItem } from "../redux/todoListReducer";
 import { useState } from "react";
 
@@ -17,9 +17,7 @@ export default function AddTodoItem()
         <div className="add-todo-item">
             <input type="text" placeholder="Enter new item"
                 onChange={(e) => setNewTodoItem(e.target.value)}/>
-            <button onClick={addItem}>Add</button>
-
-            
+            <button onClick={addItem}>Add</button>            
         </div>
     )
 }
